@@ -1,3 +1,10 @@
+export interface FrontRoute {
+    name: string
+    path: string
+}
+
+export type FrontRouteArray = FrontRoute[]
+
 export const frontRoutes = {
     home: {
         name: 'Home',

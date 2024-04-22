@@ -1,5 +1,6 @@
 import { Sheet } from "@/components/ui/Sheet"
 import { BaseComponentType } from "@/models/component.model"
+import { frontRoutes } from "@/models/routes.model"
 import { HomeIcon, MagicWandIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
 import { SidebarLink } from "./components/SidebarLink"
 
@@ -13,13 +14,13 @@ export const Sidebar: BaseComponentType = () => {
             <div
                 className="flex flex-col gap-1"
             >
-                <SidebarLink href="/" currentPage>
+                <SidebarLink route={frontRoutes.home} currentPage>
                     <HomeIcon width={19} height={19} />
                 </SidebarLink>
-                <SidebarLink href="/">
+                <SidebarLink route={frontRoutes.explore}>
                     <MagnifyingGlassIcon width={19} height={19} />
                 </SidebarLink>
-                <SidebarLink href="/">
+                <SidebarLink route={frontRoutes.talents}>
                     <MagicWandIcon width={19} height={19} />
                 </SidebarLink>
             </div>
