@@ -1,1 +1,1 @@
-pnpm exec turbo lint
+pnpm exec turbo run lint
