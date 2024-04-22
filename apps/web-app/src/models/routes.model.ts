@@ -15,7 +15,7 @@ export const frontRoutes = {
         path: '/explore'
     },
     talents: {
-        name: 'Talents',
+        name: 'Discover hidden talents',
         path: '/talents'
     }
 }
