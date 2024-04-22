@@ -1,5 +1,9 @@
+import { Section } from "@/components/ui/Section"
+
 const HomePage = () => {
-    return <div></div>
+    return <div>
+        <Section />
+    </div>
 }
 
 export default HomePage

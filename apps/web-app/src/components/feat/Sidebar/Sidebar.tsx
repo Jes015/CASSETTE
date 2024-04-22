@@ -8,7 +8,7 @@ export const Sidebar: BaseComponentType = () => {
     return (
         <Sheet
             border="right"
-            className="bg-bg-secondary border-r-2 p-2 pt-4"
+            className="bg-bg-secondary border-r-2 p-2 pt-4 h-svh flex-shrink-0"
             rounded="none"
         >
             <div
