@@ -33,9 +33,10 @@ export const Art: FC<PartialSheetProps> = ({ className, ...props }) => {
             </header>
             <Sheet
                 as="footer"
-                border="top"
+                border="all"
+                borderWidth="medium"
                 rounded="none"
-                className="px-2 py-1 !border-0 overflow-hidden"
+                className="px-2 py-1 overflow-hidden !border-t-0"
             >
                 <img className="absolute top-0 blur-xl opacity-50 w-24 aspect-square object-cover" src="https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg" />
                 <div
