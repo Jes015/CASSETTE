@@ -7,13 +7,14 @@ interface SheetProps extends BaseComponentProps {
   href?: string
   component?: React.FC<unknown>
   border?: 'all' | 'right' | 'left' | 'top' | 'button' | 'x' | 'y'
+  borderWidth?: 'medium' | 'big'
   rounded?: 'none' | 'md'
 }
 
 export type PartialSheetProps = Partial<SheetProps>
 
 export const Sheet: React.FC<SheetProps> = forwardRef(
-  ({ children, as, className, href, component, border = 'all', rounded = 'md', onClick }, ref) => {
+  ({ children, as, className, href, component, border = 'all', borderWidth = 'big', rounded = 'md', onClick }, ref) => {
     const SheetRootComponent = (component ?? as) ?? 'div'
 
     return (
@@ -21,14 +22,21 @@ export const Sheet: React.FC<SheetProps> = forwardRef(
       <SheetRootComponent
         className={
           clsx(
-            'bg-bg-secondary border-border-primary/40 border-line p-2 relative rounded-md overflow-hidden flex justify-center transition-all',
-            border === 'all' && 'border-2',
-            border === 'right' && 'border-r-2',
-            border === 'left' && 'border-l-2',
-            border === 'top' && 'border-t-2',
-            border === 'button' && 'border-b-2',
-            border === 'x' && 'border-x-2',
-            border === 'y' && 'border-y-2',
+            'bg-bg-secondary border-border-primary/40 p-2 relative rounded-md overflow-hidden flex justify-center transition-all',
+            (border === 'all' && borderWidth === 'big') && 'border-2',
+            (border === 'right' && borderWidth === 'big') && 'border-r-2',
+            (border === 'left' && borderWidth === 'big') && 'border-l-2',
+            (border === 'top' && borderWidth === 'big') && 'border-t-2',
+            (border === 'button' && borderWidth === 'big') && 'border-b-2',
+            (border === 'x' && borderWidth === 'big') && 'border-x-2',
+            (border === 'y' && borderWidth === 'big') && 'border-y-2',
+            (border === 'all' && borderWidth === 'medium') && 'border',
+            (border === 'right' && borderWidth === 'medium') && 'border-r',
+            (border === 'left' && borderWidth === 'medium') && 'border-l',
+            (border === 'top' && borderWidth === 'medium') && 'border-t',
+            (border === 'button' && borderWidth === 'medium') && 'border-b',
+            (border === 'x' && borderWidth === 'medium') && 'border-x',
+            (border === 'y' && borderWidth === 'medium') && 'border-y',
             rounded === 'md' && 'rounded-md',
             rounded === 'none' && '!rounded-none',
             className
