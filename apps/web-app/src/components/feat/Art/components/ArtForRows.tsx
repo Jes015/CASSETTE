@@ -1,15 +1,21 @@
+import { Sheet } from "@/components/ui/Sheet"
+import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
+import { BaseComponentType } from "@/models/component.model"
+import { frontRoutes } from "@/models/routes.model"
 import { PlayIcon } from "@radix-ui/react-icons"
 import clsx from "clsx"
-import { FC } from "react"
-import { PartialSheetProps, Sheet } from "./Sheet"
-import { Tooltip } from "./Tooltip/Tooltip"
 
-export const Art: FC<PartialSheetProps> = ({ className, ...props }) => {
+export const ArtForRows: BaseComponentType = ({ className, ...props }) => {
+    const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+    }
     return (
-        <article
+        <a
+            href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'olaaa' })}
+            aria-label="Go to song name page"
             className={
                 clsx(
-                    "select-none flex flex-col !p-0 rounded-sm w-44 overflow-hidden cursor-pointer hover:scale-105 transition-transform",
+                    "flex flex-col !p-0 rounded-sm w-44 overflow-hidden cursor-pointer hover:scale-105 transition-all",
                     className
                 )
             }
@@ -25,8 +31,11 @@ export const Art: FC<PartialSheetProps> = ({ className, ...props }) => {
                         <span className="font-extrabold [text-shadow:1px_1px_0px_rgb(105,105,105)]">92 BPM</span>
                     </div>
                     <div className="flex justify-center items-center flex-grow">
-                        <button className="flex items-center justify-center rounded-full bg-bg-primary/80 p-2 opacity-70 hover:opacity-100 hover:scale-110 transition-transform">
-                            <PlayIcon width={28} height={28}/>
+                        <button
+                            onClick={handleOnClickToPlayArt}
+                            className="flex items-center justify-center rounded-full bg-bg-primary/80 p-2 opacity-70 hover:opacity-100 hover:scale-110 transition-transform"
+                        >
+                            <PlayIcon width={28} height={28} />
                         </button>
                     </div>
                 </div>
@@ -73,6 +82,6 @@ export const Art: FC<PartialSheetProps> = ({ className, ...props }) => {
                     </div>
                 </div>
             </Sheet>
-        </article>
+        </a>
     )
 }
