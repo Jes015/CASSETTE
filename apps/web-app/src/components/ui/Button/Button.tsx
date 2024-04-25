@@ -11,7 +11,7 @@ export const Button = forwardRef<HTMLButtonElement, BaseComponentProps>(
                 ref={ref}
                 className={
                     clsx(
-                        '!bg-bg-primary !border-border-primary/50 hover:!bg-bg-primary/5',
+                        '!bg-bg-primary !border-border-primary/50 bg-cassette hover:!bg-bg-primary/5',
                         className
                     )
                 }

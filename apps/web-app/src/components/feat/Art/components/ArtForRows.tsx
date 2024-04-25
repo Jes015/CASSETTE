@@ -2,7 +2,7 @@ import { Sheet } from "@/components/ui/Sheet"
 import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
-import { PlayIcon } from "@radix-ui/react-icons"
+import { IconPlayerPlayFilled } from "@tabler/icons-react"
 import clsx from "clsx"
 
 export const ArtForRows: BaseComponentType = ({ className, ...props }) => {
@@ -35,7 +35,7 @@ export const ArtForRows: BaseComponentType = ({ className, ...props }) => {
                             onClick={handleOnClickToPlayArt}
                             className="flex items-center justify-center rounded-full bg-bg-primary/80 p-2 opacity-70 hover:opacity-100 hover:scale-110 transition-transform"
                         >
-                            <PlayIcon width={28} height={28} />
+                            <IconPlayerPlayFilled width={28} height={28} />
                         </button>
                     </div>
                 </div>

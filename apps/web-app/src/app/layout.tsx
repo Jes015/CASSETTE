@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className, 'flex h-svh text-sm text-text-primary overflow-x-clip')}>
+      <body className={clsx(inter.className, 'flex h-svh text-sm text-text-primary overflow-x-clip max-w-[1536px] m-auto')}>
         <Sidebar />
         <main className="flex-grow relative p-4 select-none">
           <div className="-z-40 absolute top-0 left-0 w-full h-full flex items-center justify-center">

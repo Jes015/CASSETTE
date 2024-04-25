@@ -2,41 +2,30 @@ import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button/Button"
 import { Sheet } from "@/components/ui/Sheet"
 import { BaseComponentType } from "@/models/component.model"
-import { PlayIcon } from "@radix-ui/react-icons"
-import { IconShoppingCart } from "@tabler/icons-react"
+import { frontRoutes } from "@/models/routes.model"
+import { IconHeart, IconHeartFilled, IconShoppingCart } from "@tabler/icons-react"
+import { RoundedPlaySong } from "../../RoundedPlaySong/RoundedPlaySong"
 
 export const ArtForColumns: BaseComponentType = (props) => {
+
+    const liked = true
     const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
     }
+
     return (
         <Sheet
+            as="a"
+            href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'nollia' })}
             border="bottom"
             rounded="none"
-            className="gap-2 items-center"
+            className="gap-2 items-center hover:bg-bg-primary/70 cursor-pointer"
         >
-            <div
-                className="relative"
-            >
-                <img
-                    src="https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg" alt=""
-                    className="rounded-full w-14 h-14 aspect-square object-cover"
-                />
-                <div
-                    className="flex justify-center items-center w-full h-full absolute top-0 left-0"
-                >
-                    <button
-                        onClick={handleOnClickToPlayArt}
-                        className="flex items-center w-full h-full justify-center rounded-full bg-bg-primary/80 p-2 opacity-40 hover:opacity-80 transition-all"
-                    >
-                        <PlayIcon width={28} height={28} />
-                    </button>
-                </div>
-            </div>
+            <RoundedPlaySong />
             <div className="flex flex-col justify-center gap-2 flex-grow">
                 <div className="flex flex-col gap-[0.01rem] items-start">
                     <div className="flex gap-[0.1rem] items-center">
-                        <span className="font-semibold leading-4">Niaaaaa</span>
+                        <span className="font-semibold text-base leading-4">Niaaaaa</span>
                         <Badge className="mt-1 scale-95">Beat</Badge>
                     </div>
                     <div>
@@ -45,8 +34,17 @@ export const ArtForColumns: BaseComponentType = (props) => {
                     </div>
                 </div>
             </div>
-            <div>
-                <Button>
+            <div
+                className="flex items-center gap-1"
+            >
+                <Button
+                    onClick={handleOnClickToPlayArt}
+                >
+                    {liked ? <IconHeartFilled className="text-[#ff5c5c]" width={18} height={18} /> : <IconHeart width={18} height={18} />}
+                </Button>
+                <Button
+                    onClick={handleOnClickToPlayArt}
+                >
                     <IconShoppingCart width={18} height={18} />
                 </Button>
             </div>

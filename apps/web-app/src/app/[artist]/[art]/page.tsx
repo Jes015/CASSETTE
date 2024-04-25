@@ -1,9 +1,9 @@
-import { Art } from "@/components/feat/Art/Art"
 import { Badge } from "@/components/ui/Badge"
-import { Section } from "@/components/ui/Section/Section"
 import { Sheet } from "@/components/ui/Sheet"
 import { PageType } from "@/models/page.model"
 import { frontRoutes } from "@/models/routes.model"
+import { ActivitySection } from "./components/ActivitySection"
+import { SongInfoSection } from "./components/SongInfoSection"
 
 const ArtPage: PageType = ({ params }) => {
     const artistParam = params?.[frontRoutes.static.artist.paramName]
@@ -38,36 +38,9 @@ const ArtPage: PageType = ({ params }) => {
                         </div>
                     </div>
                 </Sheet>
-                <Section
-                    title="Activity"
-                    description="Recent content of the artist"
-                    type="secondary"
-                    className="!gap-0"
-                >
-                    <Section.Content
-                        className="flex flex-col"
-                    >
-                       <Art type="column" />
-                       <Art type="column" />
-                       <Art type="column" />
-                       <Art type="column" />
-                       <Art type="column" />
-                       <Art type="column" />
-                       <Art type="column" />
-                    </Section.Content>
-                </Section>
+                <ActivitySection />
             </div>
-            <Sheet
-                className="flex gap-2 flex-grow"
-            >
-                <img
-                    src="https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg" alt=""
-                    className="rounded-md w-80 aspect-square object-cover"
-                />
-                <div className="flex-grow">
-                    aaaa
-                </div>
-            </Sheet>
+            <SongInfoSection />
         </div>
     )
 }

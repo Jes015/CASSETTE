@@ -3,9 +3,6 @@ import clsx from "clsx"
 import { FC } from "react"
 import { TitleElement, titleElement } from "./models/title.model"
 
-
-
-
 interface TitleProps extends BaseComponentProps {
     as?: TitleElement
 }
