@@ -1,17 +1,12 @@
 import { Badge } from "@/components/ui/Badge"
-import { Button } from "@/components/ui/Button/Button"
 import { Sheet } from "@/components/ui/Sheet"
+import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
-import { IconHeart, IconHeartFilled, IconShoppingCart } from "@tabler/icons-react"
 import { RoundedPlaySong } from "../../RoundedPlaySong/RoundedPlaySong"
+import { SongActions } from "../../SongActions/SongActions"
 
 export const ArtForColumns: BaseComponentType = (props) => {
-
-    const liked = true
-    const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
-    }
 
     return (
         <Sheet
@@ -25,7 +20,7 @@ export const ArtForColumns: BaseComponentType = (props) => {
             <div className="flex flex-col justify-center gap-2 flex-grow">
                 <div className="flex flex-col gap-[0.01rem] items-start">
                     <div className="flex gap-[0.1rem] items-center">
-                        <span className="font-semibold text-base leading-4">Niaaaaa</span>
+                        <Title as='quaternary'>Niaaaaa</Title>
                         <Badge className="mt-1 scale-95">Beat</Badge>
                     </div>
                     <div>
@@ -34,20 +29,7 @@ export const ArtForColumns: BaseComponentType = (props) => {
                     </div>
                 </div>
             </div>
-            <div
-                className="flex items-center gap-1"
-            >
-                <Button
-                    onClick={handleOnClickToPlayArt}
-                >
-                    {liked ? <IconHeartFilled className="text-[#ff5c5c]" width={18} height={18} /> : <IconHeart width={18} height={18} />}
-                </Button>
-                <Button
-                    onClick={handleOnClickToPlayArt}
-                >
-                    <IconShoppingCart width={18} height={18} />
-                </Button>
-            </div>
+            <SongActions size="small" />
         </Sheet>
     )
 }

@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/Badge"
+import { Section } from "@/components/ui/Section/Section"
 import { Sheet } from "@/components/ui/Sheet"
+import { Title } from "@/components/ui/Title/Title"
 import { PageType } from "@/models/page.model"
 import { frontRoutes } from "@/models/routes.model"
 import { ActivitySection } from "./components/ActivitySection"
@@ -40,7 +42,29 @@ const ArtPage: PageType = ({ params }) => {
                 </Sheet>
                 <ActivitySection />
             </div>
-            <SongInfoSection />
+            <div
+                className="flex flex-grow gap-2"
+            >
+                <div
+                    className="flex flex-col flex-grow justify-start gap-2"
+                >
+                    <SongInfoSection />
+                    <SongInfoSection />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <Section
+                        type="secondary"
+                    >
+                        <Section.Content
+                            className="flex-col !gap-0 p-2 min-h-24"
+                        >
+                            <Title as="quaternary">Watch out my new video</Title>
+                        </Section.Content>
+                    </Section>
+                    <ActivitySection />
+                    <ActivitySection />
+                </div>
+            </div>
         </div>
     )
 }

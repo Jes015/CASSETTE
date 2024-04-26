@@ -54,7 +54,6 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
                         '--progress': '84%'
                     }}
                 >
-                    <span>This <em>really awesome feature</em> requires JS 😢</span>
                 </div>
                 <button
                     onClick={handleOnClickToPlayArt}

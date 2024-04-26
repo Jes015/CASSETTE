@@ -6,7 +6,7 @@ import { SectionContent } from "./components/SectionContent"
 import { SectionHeader } from "./components/SectionHeader"
 
 interface SectionProps extends BaseComponentProps {
-    type?: 'main' | 'secondary'
+    type?: 'main' | 'secondary' | 'tertiary'
 }
 
 export type PartialSectionProps = Partial<SectionProps>
@@ -21,6 +21,7 @@ export const Section = ({ type = 'main', className, ...props }: SectionProps) =>
                     "flex flex-col gap-1 overflow-hidden",
                     type === 'secondary' && '!p-0 !bg-bg-secondary',
                     type === 'main' && '!border-0 !bg-transparent',
+                    type === 'tertiary' && '!bg-bg-secondary/80',
                     className
                 )
             }

@@ -14,8 +14,9 @@ export const Title: FC<TitleProps> = ({ as = 'tertiary', className, ...props }) 
         <Component
             className={
                 clsx(
-                    'font-bold',
-                    as === 'tertiary' && 'text-2xl',
+                    as === 'secondary' && 'text-4xl font-bold',
+                    as === 'tertiary' && 'text-2xl font-bold',
+                    as === 'quaternary' && 'text-base font-semibold leading-4',
                     className
                 )
             }

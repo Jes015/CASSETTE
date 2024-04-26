@@ -1,17 +1,20 @@
+'use client'
 import { BaseComponentProps } from '@/models/component.model'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { FC, forwardRef } from 'react'
 
 interface SheetProps extends BaseComponentProps {
   as?: keyof JSX.IntrinsicElements
   href?: string
   component?: React.FC<unknown>
-  border?: 'all' | 'right' | 'left' | 'top' | 'bottom' | 'x' | 'y'
+  border?: 'all' | 'right' | 'left' | 'top' | 'bottom' | 'x' | 'y' | 'none'
   borderWidth?: 'medium' | 'big'
   rounded?: 'none' | 'md'
 }
 
 export type PartialSheetProps = Partial<SheetProps>
+
+export type PartialSheetType = FC<PartialSheetProps>
 
 export const Sheet = forwardRef<HTMLElement, PartialSheetProps>(
   ({ children, as, className, href, component, border = 'all', borderWidth = 'big', rounded = 'md', onClick }, ref) => {

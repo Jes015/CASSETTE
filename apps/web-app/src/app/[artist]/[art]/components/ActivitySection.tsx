@@ -1,35 +1,24 @@
-import { Art } from "@/components/feat/Art/Art"
-import { PartialSectionType, Section } from "@/components/ui/Section/Section"
-import clsx from "clsx"
+import { Art } from '@/components/feat/Art/Art'
+import { ColumnArt } from '@/components/feat/ColumnArt/ColumnArt'
+import { PartialSectionType } from '@/components/ui/Section/Section'
 
 export const ActivitySection: PartialSectionType = ({ className, ...props }) => {
     return (
-        <Section
-            type="secondary"
-            className={
-                clsx(
-                    "!gap-0",
-                    className
-                )
-            }
-            {...props}
+        <ColumnArt
+            headerProps={{
+                title: 'Activity',
+                type: 'secondary',
+                description: 'Recent content of the artist'
+            }}
+            
         >
-            <Section.Header
-                title="Activity"
-                type="secondary"
-                description="Recent content of the artist"
-            />
-            <Section.Content
-                className="flex-col !gap-0"
-            >
-                <Art type="column" />
-                <Art type="column" />
-                <Art type="column" />
-                <Art type="column" />
-                <Art type="column" />
-                <Art type="column" />
-                <Art type="column" />
-            </Section.Content>
-        </Section>
+            <Art type='column' />
+            <Art type='column' />
+            <Art type='column' />
+            <Art type='column' />
+            <Art type='column' />
+            <Art type='column' />
+            <Art type='column' />
+        </ColumnArt>
     )
 }

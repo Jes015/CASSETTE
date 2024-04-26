@@ -4,13 +4,17 @@ import { FC } from "react"
 import { Sheet } from "../../Sheet"
 import { Title } from "../../Title/Title"
 
-interface SectionProps extends BaseComponentProps {
+interface SectionHeaderProps extends BaseComponentProps {
     title: string
     description?: string
     type?: 'main' | 'secondary'
 }
 
-export const SectionHeader: FC<SectionProps> = ({ title, description, type, className, ...props }) => {
+export type PartialSectionHeaderProps = Partial<SectionHeaderProps>
+
+export type PartialSectionHeaderType = FC<SectionHeaderProps>
+
+export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type, className, ...props }) => {
     if (type === 'main') {
         return (
             <header
