@@ -1,19 +1,22 @@
+'use client'
 import { BaseComponentProps } from '@/models/component.model'
 import clsx from 'clsx'
-import { forwardRef } from 'react'
+import { FC, forwardRef } from 'react'
 
 interface SheetProps extends BaseComponentProps {
   as?: keyof JSX.IntrinsicElements
   href?: string
   component?: React.FC<unknown>
-  border?: 'all' | 'right' | 'left' | 'top' | 'button' | 'x' | 'y'
+  border?: 'all' | 'right' | 'left' | 'top' | 'bottom' | 'x' | 'y' | 'none'
   borderWidth?: 'medium' | 'big'
   rounded?: 'none' | 'md'
 }
 
 export type PartialSheetProps = Partial<SheetProps>
 
-export const Sheet: React.FC<SheetProps> = forwardRef(
+export type PartialSheetType = FC<PartialSheetProps>
+
+export const Sheet = forwardRef<HTMLElement, PartialSheetProps>(
   ({ children, as, className, href, component, border = 'all', borderWidth = 'big', rounded = 'md', onClick }, ref) => {
     const SheetRootComponent = (component ?? as) ?? 'div'
 
@@ -27,14 +30,14 @@ export const Sheet: React.FC<SheetProps> = forwardRef(
             (border === 'right' && borderWidth === 'big') && 'border-r-2',
             (border === 'left' && borderWidth === 'big') && 'border-l-2',
             (border === 'top' && borderWidth === 'big') && 'border-t-2',
-            (border === 'button' && borderWidth === 'big') && 'border-b-2',
+            (border === 'bottom' && borderWidth === 'big') && 'border-b-2',
             (border === 'x' && borderWidth === 'big') && 'border-x-2',
             (border === 'y' && borderWidth === 'big') && 'border-y-2',
             (border === 'all' && borderWidth === 'medium') && 'border',
             (border === 'right' && borderWidth === 'medium') && 'border-r',
             (border === 'left' && borderWidth === 'medium') && 'border-l',
             (border === 'top' && borderWidth === 'medium') && 'border-t',
-            (border === 'button' && borderWidth === 'medium') && 'border-b',
+            (border === 'bottom' && borderWidth === 'medium') && 'border-b',
             (border === 'x' && borderWidth === 'medium') && 'border-x',
             (border === 'y' && borderWidth === 'medium') && 'border-y',
             rounded === 'md' && 'rounded-md',
@@ -42,7 +45,7 @@ export const Sheet: React.FC<SheetProps> = forwardRef(
             className
           )
         }
-        {...{ href, onClick }}
+        {...{ href, onClick, ref }}
       >
         {children}
       </SheetRootComponent>

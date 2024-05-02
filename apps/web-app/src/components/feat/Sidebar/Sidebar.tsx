@@ -14,13 +14,13 @@ export const Sidebar: BaseComponentType = () => {
             <div
                 className="flex flex-col gap-1"
             >
-                <SidebarLink route={frontRoutes.home} currentPage>
+                <SidebarLink route={frontRoutes.static.home} currentPage>
                     <HomeIcon width={19} height={19} />
                 </SidebarLink>
-                <SidebarLink route={frontRoutes.explore}>
+                <SidebarLink route={frontRoutes.static.explore}>
                     <MagnifyingGlassIcon width={19} height={19} />
                 </SidebarLink>
-                <SidebarLink route={frontRoutes.talents}>
+                <SidebarLink route={frontRoutes.static.talents}>
                     <MagicWandIcon width={19} height={19} />
                 </SidebarLink>
             </div>

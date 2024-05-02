@@ -14,7 +14,7 @@ export const SidebarLink: FC<SidebarLink> = ({ route, className, currentPage = f
         <Tooltip
             trigger={
                 <Sheet
-                    as="a"
+                    as="a" //TODO:SET THE NEXT JS COMPONENT FOR THIS LINK
                     aria-label={`Go to ${route.name} page`}
                     href={route.path}
                     className={

@@ -1,0 +1,57 @@
+/* let's us animate the custom prop */
+/* if @property isn't supported, everything works, just without the animation */
+@property --progress {
+    syntax: "<length-percentage>";
+    inherits: false;
+    initial-value: 0%;
+}
+
+.circularProgressBar {
+    --size: 100%;
+    --background: transparent;
+    --color-dark-glare: rgb(255, 255, 255);
+    --image-bg: url("https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg");
+
+    font-size: 2rem;
+    width: var(--size);
+    aspect-ratio: 1 / 1;
+    margin: 2rem auto;
+    background: conic-gradient(var(--background),
+            var(--background) var(--progress),
+            var(--color-dark-glare) 0%);
+    border-radius: 50vmax;
+
+    display: grid;
+    place-items: center;
+
+    /* this works thanks to the @property at the top */
+    transition: --progress 500ms linear;
+
+}
+
+/* we only have this role if JS is enabled */
+/* which means it's safe to hide the message here */
+.circularProgressBar>span {
+    display: none;
+}
+
+/* using aria-valuenow, to help enforce using it in the JS */
+.circularProgressBar::after {
+    content: "";
+    background: var(--image-bg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: calc(100% - var(--bar-width));
+    aspect-ratio: 1;
+    border-radius: inherit;
+    display: grid;
+    place-items: center;
+}
+
+/* when progress === 100 */
+.circularProgressBar[aria-valuenow="100"]::after {
+    /* this is kind of hacky, but it allows the percent to be at 100% for a bit before the checkbox comes in, which feels better */
+    animation: progressComplete 0s forwards;
+    animation-delay: 1000ms;
+}
