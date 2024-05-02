@@ -7,7 +7,6 @@ import { TableRow } from "./components/TableRow"
 export const Table = ({ ...props }: BaseComponentProps) => {
     return (
         <table
-            className="w-full"
             {...props}
         />
     )

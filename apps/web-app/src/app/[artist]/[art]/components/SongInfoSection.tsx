@@ -2,8 +2,8 @@
 import { RoundedPlaySong } from "@/components/feat/RoundedPlaySong/RoundedPlaySong"
 import { SongActions } from "@/components/feat/SongActions/SongActions"
 import { Badge } from "@/components/ui/Badge"
+import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { PartialSectionType, Section } from "@/components/ui/Section/Section"
-import { Table } from "@/components/ui/Table/Table"
 import { Title } from "@/components/ui/Title/Title"
 import { IconPlus } from "@tabler/icons-react"
 import clsx from "clsx"
@@ -20,7 +20,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
         <Section
             className={
                 clsx(
-                    "flex gap-2 !border-0",
+                    "w-full flex gap-2 !border-0",
                     className
                 )
             }
@@ -28,12 +28,14 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
             {...props}
         >
             <Section.Content
-                className="flex flex-col p-2"
+                className="flex flex-col p-2 flex-shrink"
             >
                 <div className="inline-flex flex-grow items-start">
-                    <RoundedPlaySong size="big" />
+                    <div>
+                        <RoundedPlaySong className="flex-shrink-0" size="big" />
+                    </div>
                     <div
-                        className="flex flex-grow flex-col gap-2"
+                        className="flex flex-grow flex-col gap-1"
                     >
                         <div className="flex justify-between items-center mt-4">
                             <div className="flex gap-2 items-center">
@@ -59,47 +61,21 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
                             </div>
                         </div>
                         <div
-                            className="flex items-center self-end gap-2"
+                            className="flex items-start justify-between pl-1 gap-2"
                         >
+                            <div>
+                                <Paragraph as="quaternary">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores excepturi voluptate, iste nemo ratione reiciendis provident saepe dolor libero nostrum nihil quia dicta totam odit! Saepe ducimus corporis minima incidunt.
+                                </Paragraph>
+                            </div>
                             <SongActions
                                 size="big"
                             />
                         </div>
                     </div>
                 </div>
-                <div>
-                    <Table>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.Column>aaa</Table.Column>
-                                <Table.Column>aaa</Table.Column>
-                                <Table.Column>aaa</Table.Column>
-                                <Table.Column>aaa</Table.Column>
-                            </Table.Row>
-                        </Table.Header>
-                        <Table.Body>
-                            <Table.Row
-                                className="bg-blue-400"
-                            >
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                                <Table.Column>aaaa</Table.Column>
-                            </Table.Row>
-                        </Table.Body>
-                    </Table>
+                <div className="max-w-48 overflow-x-auto">
+
                 </div>
             </Section.Content>
         </Section>

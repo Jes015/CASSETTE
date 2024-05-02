@@ -49,7 +49,6 @@ const ArtPage: PageType = ({ params }) => {
                     className="flex flex-col flex-grow justify-start gap-2"
                 >
                     <SongInfoSection />
-                    <SongInfoSection />
                 </div>
                 <div className="flex flex-col gap-2">
                     <Section
