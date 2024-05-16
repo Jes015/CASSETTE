@@ -1,16 +1,16 @@
+import { Link, LinkPartialType } from "@/components/ui/Link/Link"
 import { Sheet } from "@/components/ui/Sheet"
 import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
-import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
 import { IconPlayerPlayFilled } from "@tabler/icons-react"
 import clsx from "clsx"
 
-export const ArtForRows: BaseComponentType = ({ className, ...props }) => {
+export const ArtForRows: LinkPartialType = ({ className, ...props }) => {
     const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
     }
     return (
-        <a
+        <Link
             href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'olaaa' })}
             aria-label="Go to song name page"
             className={
@@ -82,6 +82,6 @@ export const ArtForRows: BaseComponentType = ({ className, ...props }) => {
                     </div>
                 </div>
             </Sheet>
-        </a>
+        </Link>
     )
 }

@@ -32,11 +32,11 @@ const ArtPage: PageType = ({ params }) => {
                         <span className="font-semibold text-base">Joyolababy</span>
                         <span className="text-zinc-400 text-xs font-medium">Cantante productor y escritor</span>
                         <div className="flex gap-1 items-start flex-wrap mt-1">
-                            <Badge color="primary">Singer</Badge>
-                            <Badge color="primary">Producer</Badge>
-                            <Badge color="primary">Writer</Badge>
-                            <Badge color="primary">Painter</Badge>
-                            <Badge color="primary">Designer</Badge>
+                            <Badge styles="primary">Singer</Badge>
+                            <Badge styles="primary">Producer</Badge>
+                            <Badge styles="primary">Writer</Badge>
+                            <Badge styles="primary">Painter</Badge>
+                            <Badge styles="primary">Designer</Badge>
                         </div>
                     </div>
                 </Sheet>
