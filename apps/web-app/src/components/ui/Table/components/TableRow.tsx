@@ -1,11 +1,13 @@
-import { PartialSheetType, Sheet } from "../../Sheet"
+import { BaseComponentType } from "@/models/component.model"
 
-export const TableRow: PartialSheetType = (props) => {
+interface TableRowProps {
+    header?: boolean
+}
+
+export const TableRow: BaseComponentType = (props) => {
     return (
-        <Sheet
-            as="tr"
-            border="bottom"
-            className="!table-row"
+        <tr
+            className="border-b-2 border-b-border-secondary"
             {...props}
         />
     )

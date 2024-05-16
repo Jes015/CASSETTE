@@ -7,6 +7,7 @@ import { PartialSectionType, Section } from "@/components/ui/Section/Section"
 import { Title } from "@/components/ui/Title/Title"
 import { IconPlus } from "@tabler/icons-react"
 import clsx from "clsx"
+import { LicensesSection } from "./LicensesSection/LicensesSection"
 
 export const SongInfoSection: PartialSectionType = ({ className, ...props }) => {
     const isSongOwner = true
@@ -74,9 +75,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
                         </div>
                     </div>
                 </div>
-                <div className="max-w-48 overflow-x-auto">
-
-                </div>
+                <LicensesSection />
             </Section.Content>
         </Section>
     )
