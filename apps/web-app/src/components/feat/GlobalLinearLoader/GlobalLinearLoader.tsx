@@ -1,16 +1,18 @@
 'use client'
 import LinearLoading from "@/components/ui/LinearLoading/LinearLoading"
 import { BaseComponentType } from "@/models/component.model"
+import clsx from "clsx"
 import { useGlobalLinearLoader } from "./hooks/useGlobalLinearLoader"
 
 export const GlobalLinearLoader: BaseComponentType = ({ className, ...props }) => {
-    useGlobalLinearLoader()
+    const { displayLoader } = useGlobalLinearLoader()
+
     return (
         <div
-            className=""
+            className={clsx('fixed top-0 w-dvw')}
             {...props}
         >
-            <LinearLoading />
+            {displayLoader && <LinearLoading />}
         </div>
     )
 }
