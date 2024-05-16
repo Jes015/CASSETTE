@@ -1,10 +1,10 @@
-import { PartialSheetProps, Sheet } from "@/components/ui/Sheet"
+import { Link, PartialLinkProps } from "@/components/ui/Link/Link"
 import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
 import { FrontRoute } from "@/models/routes.model"
 import clsx from "clsx"
 import { FC } from "react"
 
-interface SidebarLink extends PartialSheetProps {
+interface SidebarLink extends PartialLinkProps {
     route: FrontRoute
     currentPage?: boolean
 }
@@ -13,19 +13,21 @@ export const SidebarLink: FC<SidebarLink> = ({ route, className, currentPage = f
     return (
         <Tooltip
             trigger={
-                <Sheet
-                    as="a" //TODO:SET THE NEXT JS COMPONENT FOR THIS LINK
-                    aria-label={`Go to ${route.name} page`}
-                    href={route.path}
-                    className={
-                        clsx(
-                            'hover:bg-bg-primary/80 items-center hover:border-border-primary/80',
-                            currentPage && '!bg-bg-primary !border-border-primary !text-zinc-100',
-                            className
-                        )
-                    }
-                    {...props}
-                />
+                <div>
+                    <Link
+                        aria-label={`Go to ${route.name} page`}
+                        href={route.path}
+                        className={
+                            clsx(
+                                'bg-bg-secondary border-border-primary/40 p-2 relative rounded-md overflow-hidden flex justify-center transition-all border-2',
+                                'hover:bg-bg-primary/80 items-center hover:border-border-primary/80',
+                                currentPage && '!bg-bg-primary !border-border-primary !text-zinc-100',
+                                className
+                            )
+                        }
+                        {...props}
+                    />
+                </div>
             }
             content={route.name}
             contentProps={{

@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/Badge"
-import { Sheet } from "@/components/ui/Sheet"
+import { Link } from "@/components/ui/Link/Link"
 import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
@@ -9,12 +9,9 @@ import { SongActions } from "../../SongActions/SongActions"
 export const ArtForColumns: BaseComponentType = (props) => {
 
     return (
-        <Sheet
-            as="a"
+        <Link
             href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'nollia' })}
-            border="bottom"
-            rounded="none"
-            className="gap-2 items-center hover:bg-bg-primary/70 cursor-pointer"
+            className="gap-2 !no-underline items-center hover:bg-bg-primary/70 cursor-pointer bg-bg-secondary border-border-primary/40 p-2 relative overflow-hidden flex justify-center transition-all border-b-2 rounded-none"
         >
             <RoundedPlaySong />
             <div className="flex flex-col justify-center gap-2 flex-grow">
@@ -24,12 +21,12 @@ export const ArtForColumns: BaseComponentType = (props) => {
                         <Badge className="mt-1 scale-95">Beat</Badge>
                     </div>
                     <div>
-                        <Badge className="scale-95" color="primary">Regueton</Badge>
-                        <Badge className="scale-95" color="primary">92 BPM</Badge>
+                        <Badge className="scale-95" styles="primary">Regueton</Badge>
+                        <Badge className="scale-95" styles="primary">92 BPM</Badge>
                     </div>
                 </div>
             </div>
             <SongActions size="small" />
-        </Sheet>
+        </Link>
     )
 }

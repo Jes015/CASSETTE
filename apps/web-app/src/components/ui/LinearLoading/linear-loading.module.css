@@ -1,0 +1,50 @@
+.linearLoading {
+    height: 0.4rem;
+    background-color: rgba(66, 85, 169, 0.4);
+}
+
+.linearLoading__container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.linearLoading__container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 70%;
+    background-color: rgb(119, 146, 255);
+    animation: lineLoading ease 2s infinite;
+}
+
+.linearLoading__container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 70%;
+    transform: translateX(-100%);
+    background-color: rgb(94, 126, 255);
+    animation: lineLoading ease 2s infinite;
+    animation-delay: 1s;
+}
+
+@keyframes lineLoading {
+    from {
+        transform: translateX(-100%);
+        width: 50%;
+    }
+
+    50% {
+        width: 35%;
+    }
+
+    to {
+        width: 50%;
+        transform: translateX(200%);
+    }
+}

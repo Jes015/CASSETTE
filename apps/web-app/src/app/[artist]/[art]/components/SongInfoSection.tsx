@@ -53,7 +53,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
                                         <Badge
                                             as="button"
                                             size="big"
-                                            color="tertiary"
+                                            styles="tertiary"
                                             className="!flex !self-stretch justify-center items-center cursor-pointer">
                                             <IconPlus width={14} height={14} />
                                         </Badge>
