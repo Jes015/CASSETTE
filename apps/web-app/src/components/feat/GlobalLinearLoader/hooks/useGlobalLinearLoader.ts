@@ -1,15 +1,23 @@
+import { useOnPageLoad } from "@/hooks/useOnPageLoad"
 import { globalLoaderService } from "@/services/client/global-loader.client-service"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export const useGlobalLinearLoader = () => {
+    const [displayLoader, setDisplayLoader] = useState(false)
+
+    useOnPageLoad(() => {
+        setDisplayLoader(false)
+    })
+
     useEffect(() => {
         globalLoaderService.listenEvent((details) => {
-            if (details == null) return
-            console.log(details)
+            setDisplayLoader(Boolean(details?.detail))
         })
 
         return () => {
             globalLoaderService.removeEvent()
         }
     }, [])
+
+    return { displayLoader }
 }
