@@ -13,6 +13,7 @@ const config: Config = {
         'bg-secondary': '#0E0E0E',
         'bg-tertiary': '#1e1e1e',
         'border-primary': '#303030',
+        'border-secondary': '#181818',
         'text-primary': '#e4e4e7',
         'text-secondary': '#d4d4d8f2'
       }

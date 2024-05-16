@@ -6,7 +6,7 @@ export const TableHeader: BaseComponentType = ({ className, ...props }) => {
         <thead
             className={
                 clsx(
-                    'border border-border-primary bg-white rounded-sm'
+                    'border-b-2 border-b-border-primary bg-bg-primary overflow-hidden'
                 )
             }
             {...props}

@@ -6,7 +6,7 @@ export const TableColumn: BaseComponentType = ({ className, ...props }) => {
         <th
             className={
                 clsx(
-                    'border-r border-r-border-primary p-2',
+                    'p-2 font-normal',
                     className
                 )
             }
