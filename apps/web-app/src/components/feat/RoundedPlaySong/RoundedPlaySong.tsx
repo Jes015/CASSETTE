@@ -1,5 +1,6 @@
 'use client'
 import { BaseComponentProps } from "@/models/component.model"
+import { songPlayerService } from "@/services/client/song-player.client-service"
 import { IconPlayerPlayFilled } from "@tabler/icons-react"
 import clsx from "clsx"
 import { FC } from "react"
@@ -14,9 +15,14 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
 
     const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
+        e.stopPropagation()
+
+        songPlayerService.sendMessage({ detail: true })
     }
+
     return (
         <div
+            onClick={handleOnClickToPlayArt}
             className={
                 clsx(
                     "relative",

@@ -1,3 +1,4 @@
+'use client'
 export type functionEvent = (details?: CustomEventInit<boolean>) => unknown
 
 export class CustomMessageEventApp {
