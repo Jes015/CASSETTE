@@ -5,7 +5,7 @@ import clsx from "clsx"
 import { FC } from "react"
 
 interface SongActionsProps extends BaseComponentProps {
-    size: 'small' | 'big'
+    size: 'small' | 'big' | 'pretty-small'
 }
 
 export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', ...props }) => {
@@ -20,6 +20,8 @@ export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', .
 
     if (size === 'big') {
         iconsWidth = 22
+    } else if (size === 'pretty-small') {
+        iconsWidth = 14
     }
 
     return (
