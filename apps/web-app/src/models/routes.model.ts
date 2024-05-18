@@ -29,6 +29,10 @@ export const frontRoutes = {
             path: '/:artist/:art',
             paramName: 'art',
         },
+        whatilove: {
+            name: 'What i love',
+            path: '/whatilove',
+        },
     },
     dynamics: {
         artist: ({ artistName }: FrontArtistDynamicRouteParams) => {
