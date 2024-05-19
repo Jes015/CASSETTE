@@ -15,15 +15,11 @@ export const Image: React.FC<ImageProps> = ({ src, alt, ...props }) => {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(false)
 
-    console.log({ error })
-    console.log({ isLoading })
-
     const handleOnLoadStart = () => {
         setIsLoading(true)
     }
 
     const handleOnLoad = () => {
-        console.log('dejo de cargar')
         setIsLoading(false)
     }
 

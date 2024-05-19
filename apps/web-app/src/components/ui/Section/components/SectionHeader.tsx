@@ -8,13 +8,14 @@ interface SectionHeaderProps extends BaseComponentProps {
     title: string
     description?: string
     type?: 'main' | 'secondary'
+    rightNode?: React.ReactNode
 }
 
 export type PartialSectionHeaderProps = Partial<SectionHeaderProps>
 
 export type PartialSectionHeaderType = FC<SectionHeaderProps>
 
-export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type, className, ...props }) => {
+export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type, className, rightNode, ...props }) => {
     if (type === 'main') {
         return (
             <header
@@ -38,7 +39,7 @@ export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type
                 as="header"
                 className={
                     clsx(
-                        "!bg-bg-primary !justify-start",
+                        "!bg-bg-primary !justify-between !items-center",
                         className
                     )
                 }
@@ -56,6 +57,7 @@ export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type
                     </span>
                     <span className="self-center pt-[0.24rem] text-zinc-500 text-[0.62rem] leading-3">{description}</span>
                 </div>
+                {rightNode}
             </Sheet>
         )
     }

@@ -3,15 +3,21 @@ import { Link } from "@/components/ui/Link/Link"
 import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
+import clsx from "clsx"
 import { RoundedPlaySong } from "../../RoundedPlaySong/RoundedPlaySong"
 import { SongActions } from "../../SongActions/SongActions"
 
-export const ArtForColumns: BaseComponentType = (props) => {
+export const ArtForColumns: BaseComponentType = ({ className }) => {
 
     return (
         <Link
             href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'nollia' })}
-            className="gap-2 !no-underline items-center hover:bg-bg-primary/70 cursor-pointer bg-bg-secondary border-border-primary/40 p-2 relative overflow-hidden flex justify-center transition-all border-b-2 rounded-none"
+            className={
+                clsx(
+                    "gap-2 !no-underline items-center hover:bg-bg-primary/70 cursor-pointer bg-bg-secondary border-border-primary/40 p-2 relative overflow-hidden flex justify-center transition-all border-b-2 rounded-none",
+                    className
+                )
+            }
         >
             <RoundedPlaySong />
             <div className="flex flex-col justify-center gap-2 flex-grow">
