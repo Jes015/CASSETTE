@@ -1,21 +1,21 @@
 'use client'
-export type functionEvent = (details?: CustomEventInit<boolean>) => unknown
+export type functionEvent <type>= (details?: CustomEventInit<type>) => unknown
 
-export class CustomMessageEventApp {
+export class CustomMessageEventApp <MessageDetailsType>{
     private readonly eventName: string
-    private callback: functionEvent
+    private callback: functionEvent<MessageDetailsType>
 
     constructor(eventName: string) {
         this.eventName = 'custom:' + eventName
         this.callback = () => { }
     }
 
-    public sendMessage(params?: { detail?: unknown | null }) {
+    public sendMessage(params?: { detail?: MessageDetailsType | null }) {
         const customEvent = new CustomEvent(this.eventName, { detail: params?.detail })
         document.dispatchEvent(customEvent)
     }
 
-    public listenEvent(callback: functionEvent) {
+    public listenEvent(callback: functionEvent<MessageDetailsType>) {
         this.callback = callback
         document.addEventListener(this.eventName, callback)
     }

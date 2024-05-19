@@ -1,12 +1,14 @@
 import { songPlayerService } from "@/services/client/song-player.client-service"
 import { useEffect, useState } from "react"
 
+export type PlayerVisibleStatus = 'no-visible' | 'only-player' | 'visible'
+
 export const useSongPlayer = () => {
-    const [playerVisible, setPlayerVisible] = useState(false)
+    const [playerVisible, setPlayerVisible] = useState<PlayerVisibleStatus>('no-visible')
 
     useEffect(() => {
         songPlayerService.listenEvent((details) => {
-            if (details == null) return
+            if (details?.detail == null) return
 
             togglePlayerState(details.detail)
         })
@@ -16,8 +18,8 @@ export const useSongPlayer = () => {
         }
     }, [])
 
-    const togglePlayerState =  (newState?: boolean) => {
-        setPlayerVisible((prev) => newState ?? !prev)
+    const togglePlayerState = (newState: PlayerVisibleStatus) => {
+        setPlayerVisible(newState)
     }
 
     return { togglePlayerState, playerVisible }

@@ -17,7 +17,7 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
         e.preventDefault()
         e.stopPropagation()
 
-        songPlayerService.sendMessage({ detail: true })
+        songPlayerService.sendMessage({ detail: 'only-player' })
     }
 
     return (
@@ -25,7 +25,7 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
             onClick={handleOnClickToPlayArt}
             className={
                 clsx(
-                    "relative overflow-hidden",
+                    "relative overflow-hidden rounded-full",
                     size === 'big' && 'w-40 h-40',
                     size === 'small' && 'w-14 h-14'
                 )
