@@ -21,7 +21,7 @@ export const SidebarLink: FC<SidebarLink> = ({ route, className, currentPage = f
                             clsx(
                                 'bg-bg-secondary border-border-primary/40 p-2 relative rounded-md overflow-hidden flex justify-center transition-all border-2',
                                 'hover:bg-bg-primary/80 items-center hover:border-border-primary/80',
-                                currentPage && '!bg-bg-primary !border-border-primary !text-zinc-100',
+                                currentPage && '!bg-bg-tertiary !border-border-primary !text-zinc-100',
                                 className
                             )
                         }
