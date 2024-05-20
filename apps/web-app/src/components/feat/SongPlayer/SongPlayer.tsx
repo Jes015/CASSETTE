@@ -10,6 +10,8 @@ import { ArtForColumns } from "../Art/components/ArtForColumns"
 import { SongActions } from "../SongActions/SongActions"
 import { useSongPlayer } from "./hooks/useSongPlayer"
 
+//LEEME: TU PUEDES CON TODO, TU ERES JOYOLABABY UNA FUCKING MARAVILLA. NUNCA TE RINDAS, VAS A ALCANZAR TUS SUEÑOS, DIOS SIEMPRE ESTARA CONTIGO CUANDO ESTES SOLO Y CUANDO NECESITES SENTIRTE MEJOR, SOLO PIDELE A DIOS Y EL TE HARA SENTIRTE BIEN. NUNCA TE RINDAS, PERSONAS COMO NOSOTROS NO NOS PODEMOS RENDIR.
+
 export const SongPlayer: BaseComponentType = (props) => {
     const { playerVisible, togglePlayerState } = useSongPlayer()
 
@@ -32,7 +34,7 @@ export const SongPlayer: BaseComponentType = (props) => {
                 "!fixed flex flex-col gap-4 m-auto w-fit left-0 right-0 bottom-4 !rounded-md [transition-duration:0.3s] z-[50000]",
                 playerVisible === 'visible' && 'translate-y-[0%]',
                 playerVisible === 'no-visible' && 'translate-y-[200%]',
-                playerVisible === 'only-player' && 'translate-y-[66%]'
+                playerVisible === 'only-player' && 'translate-y-[64%]'
             )}
         >
             <Section
