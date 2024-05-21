@@ -1,12 +1,12 @@
 import { BaseComponentType } from "@/models/component.model"
 import clsx from "clsx"
 
-export const SectionContent: BaseComponentType = ({ className, ...props }) => {
+export const TextFieldLabel: BaseComponentType = ({ className, ...props }) => {
     return (
-        <div
+        <span
             className={
                 clsx(
-                    "flex gap-2 flex-grow",
+                    '',
                     className
                 )
             }

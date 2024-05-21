@@ -1,13 +1,14 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
+import { useRouting } from "@/hooks/useRouting"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
 import { HeartIcon, HomeIcon, MagicWandIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
-import { usePathname } from "next/navigation"
+import { IconSettings, IconUser } from "@tabler/icons-react"
 import { SidebarLink } from "./components/SidebarLink"
 
 
-const sidebarLinks = [
+const topSidebarLinks = [
     {
         route: frontRoutes.static.home,
         icon: HomeIcon
@@ -26,22 +27,47 @@ const sidebarLinks = [
     }
 ]
 
+const bottomSidebarLinks = [
+    {
+        route: frontRoutes.static.settings,
+        icon: IconSettings
+    }
+]
+
 export const Sidebar: BaseComponentType = () => {
-    const pathname = usePathname()
-    
+    const { currentPathname } = useRouting()
+
+    const iconsSize = { width: 19, height: 19 }
     return (
         <Sheet
             border="right"
-            className="bg-bg-secondary border-r-2 p-2 pt-4 h-svh flex-shrink-0"
+            className="bg-bg-secondary flex flex-col justify-between border-r-2 p-2 pt-4 h-svh flex-shrink-0"
             rounded="none"
         >
             <div
                 className="flex flex-col gap-1"
             >
                 {
-                    sidebarLinks.map((link) => (
-                        <SidebarLink key={link.route.name} route={link.route} currentPage={pathname  === link.route.path}>
-                            <link.icon width={19} height={19} />
+                    topSidebarLinks.map((link) => (
+                        <SidebarLink key={link.route.name} route={link.route} currentPage={currentPathname === link.route.path}>
+                            <link.icon {...iconsSize} />
+                        </SidebarLink>
+                    ))
+                }
+            </div>
+            <div
+                className="flex flex-col gap-1"
+            >
+                <SidebarLink
+                    route={{ name: frontRoutes.static.artist.name, path: frontRoutes.dynamics.artist({ artistName: 'joyolababy' }) }}
+                    currentPage={currentPathname === '/joyolababy'}
+                >
+                    <IconUser {...iconsSize} />
+                </SidebarLink>
+                {
+                    bottomSidebarLinks.map((link) => (
+                        <SidebarLink key={link.route.name} route={link.route} currentPage={currentPathname.includes(link.route.path)}>
+                            <link.icon {...iconsSize} />
                         </SidebarLink>
                     ))
                 }

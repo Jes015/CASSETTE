@@ -33,6 +33,24 @@ export const frontRoutes = {
             name: 'What i love',
             path: '/whatilove',
         },
+        settings: {
+            name: 'Settings',
+            path: '/settings',
+            subRoutes: {
+                home: {
+                    name: 'Home',
+                    path: '/settings'
+                },
+                artist: {
+                    name: 'Artist',
+                    path: '/settings/artist'
+                },
+                payments: {
+                    name: 'Payments',
+                    path: '/settings/payments'
+                }
+            }
+        },
     },
     dynamics: {
         artist: ({ artistName }: FrontArtistDynamicRouteParams) => {

@@ -7,7 +7,7 @@ const ArtistPage: PageType = ({ params }) => {
     console.log(artistParam)
     
     return (
-        <div></div>
+        <div>Artist : {artistParam}</div>
     )
 }
 
