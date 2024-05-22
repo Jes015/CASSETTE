@@ -32,7 +32,7 @@ export const Image: React.FC<ImageProps> = ({ src, alt, ...props }) => {
         <div
             className={
                 clsx(
-                    'bg-[rgba(255,255,255,.008)] relative !overflow-hidden',
+                    'bg-[rgba(255,255,255,.008)] !relative !overflow-hidden',
                     styles.image__container,
                     isLoading ? styles['image__container--loading'] : '',
                     props.className ?? '!h-full !w-full'

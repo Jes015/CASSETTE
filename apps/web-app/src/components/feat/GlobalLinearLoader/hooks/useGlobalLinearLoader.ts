@@ -11,7 +11,6 @@ export const useGlobalLinearLoader = () => {
 
     useEffect(() => {
         globalLoaderService.listenEvent((details) => {
-            console.log(details)
             setDisplayLoader(Boolean(details?.detail))
         })
 

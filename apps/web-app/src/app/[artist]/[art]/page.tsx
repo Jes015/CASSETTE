@@ -4,7 +4,7 @@ import { Sheet } from "@/components/ui/Sheet"
 import { Title } from "@/components/ui/Title/Title"
 import { PageType } from "@/models/page.model"
 import { frontRoutes } from "@/models/routes.model"
-import { ActivitySection } from "./components/ActivitySection"
+import { ActivitySection } from "../components/ActivitySection"
 import { SongInfoSection } from "./components/SongInfoSection"
 
 const ArtPage: PageType = ({ params }) => {

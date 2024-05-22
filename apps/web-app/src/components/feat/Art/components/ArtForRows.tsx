@@ -1,87 +1,37 @@
+import { Badge } from "@/components/ui/Badge"
 import { Link, LinkPartialType } from "@/components/ui/Link/Link"
-import { Sheet } from "@/components/ui/Sheet"
-import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
+import { Title } from "@/components/ui/Title/Title"
 import { frontRoutes } from "@/models/routes.model"
-import { IconPlayerPlayFilled } from "@tabler/icons-react"
 import clsx from "clsx"
+import { RoundedPlaySong } from "../../RoundedPlaySong/RoundedPlaySong"
+import { SongActions } from "../../SongActions/SongActions"
 
 export const ArtForRows: LinkPartialType = ({ className, ...props }) => {
-    const handleOnClickToPlayArt = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
-    }
+
     return (
         <Link
-            href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'olaaa' })}
-            aria-label="Go to song name page"
+            href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'nollia' })}
             className={
                 clsx(
-                    "flex flex-col !p-0 rounded-sm w-44 overflow-hidden cursor-pointer hover:scale-105 transition-all",
+                    "gap-2 !no-underline items-center hover:bg-bg-primary/70 cursor-pointer bg-transparent border-border-primary/40 p-2 relative overflow-hidden flex flex-col justify-center transition-all border-r-2 rounded-none",
                     className
                 )
             }
-            {...props}
         >
-            <header className="relative">
-                <img className="w-full aspect-square object-cover" src="https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg" />
-                <div className="flex flex-col absolute w-full h-full bottom-0 right-0">
-                    <div
-                        className="flex justify-between px-2 py-1"
-                    >
-                        <span className="font-bold [text-shadow:1px_1px_0px_rgb(105,105,105)]">Regueton</span>
-                        <span className="font-extrabold [text-shadow:1px_1px_0px_rgb(105,105,105)]">92 BPM</span>
+            <RoundedPlaySong size="big" />
+            <div className="flex flex-col justify-center gap-2 flex-grow">
+                <div className="flex flex-col gap-[0.01rem] items-start">
+                    <div className="flex gap-[0.1rem] items-center">
+                        <Title as='quaternary'>Niaaaaa</Title>
+                        <Badge className="mt-1 scale-95">Beat</Badge>
                     </div>
-                    <div className="flex justify-center items-center flex-grow">
-                        <button
-                            onClick={handleOnClickToPlayArt}
-                            className="flex items-center justify-center rounded-full bg-bg-primary/80 p-2 opacity-70 hover:opacity-100 hover:scale-110 transition-transform"
-                        >
-                            <IconPlayerPlayFilled width={28} height={28} />
-                        </button>
+                    <div className="flex items-start">
+                        <Badge className="scale-95" styles="primary">Regueton</Badge>
+                        <Badge className="scale-95" styles="primary">92 BPM</Badge>
                     </div>
                 </div>
-            </header>
-            <Sheet
-                as="footer"
-                border="all"
-                borderWidth="medium"
-                rounded="none"
-                className="px-2 py-1 overflow-hidden !border-t-0"
-            >
-                <img className="absolute top-0 blur-xl opacity-50 w-24 aspect-square object-cover" src="https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg" />
-                <div
-                    className="flex items-center w-full justify-between z-20 font-bold py-1"
-                >
-                    <div className="flex-grow-0">
-                        <Tooltip
-                            trigger={
-                                <span className="[text-shadow:1px_1px_0px_rgb(105,105,105)]">
-                                    Song
-                                </span>
-                            }
-                            content={
-                                <span className="text-xs font-semibold">
-                                    Song
-                                </span>
-                            }
-                            contentProps={{
-                                side: 'bottom'
-                            }}
-                        />
-                    </div>
-                    <div className="flex items-center flex-shrink-0 gap-[0.1rem]">
-                        <span
-                            className="text-[0.6rem] text-zinc-300"
-                        >
-                            By
-                        </span>
-                        <span
-                            className="text-xs font-semibold text-blue-100 cursor-pointer"
-                        >
-                            Joyolababya
-                        </span>
-                    </div>
-                </div>
-            </Sheet>
+                <SongActions size="pretty-small" />
+            </div>
         </Link>
     )
 }
