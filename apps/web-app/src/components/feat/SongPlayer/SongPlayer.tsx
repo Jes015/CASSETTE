@@ -64,17 +64,19 @@ export const SongPlayer: BaseComponentType = (props) => {
                     }
                 />
                 <Section.Content className="px-4 py-2 relative">
-                    <Image
-                        loading="eager"
-                        width={120}
-                        height={120}
-                        src="/tainy.webp" alt=""
-                        className={
-                            clsx(
-                                "rounded-full w-[120%] aspect-square object-cover !absolute top-0 left-0 blur-3xl z-0",
-                            )
-                        }
-                    />
+                    <div className="absolute top-0 left-0">
+                        <Image
+                            loading="eager"
+                            width={120}
+                            height={120}
+                            src="/tainy.webp" alt=""
+                            className={
+                                clsx(
+                                    "rounded-full w-[120%] aspect-square object-cover blur-3xl z-0",
+                                )
+                            }
+                        />
+                    </div>
                     <div className="flex flex-col z-50">
                         <div className="flex items-center gap-2">
                             <div className="w-20 aspect-square overflow-hidden">
@@ -132,17 +134,19 @@ export const SongPlayer: BaseComponentType = (props) => {
                     className="z-50 !bg-bg-primary/20 py-2"
                 />
                 <Section.Content className="p-0 relative h-80">
-                    <Image
-                        loading="eager"
-                        width={120}
-                        height={120}
-                        src="/tainy.webp" alt=""
-                        className={
-                            clsx(
-                                "rounded-full w-[120%] aspect-square object-cover !absolute top-0 left-0 blur-3xl z-0",
-                            )
-                        }
-                    />
+                    <div className="absolute top-0 left-0">
+                        <Image
+                            loading="eager"
+                            width={120}
+                            height={120}
+                            src="/tainy.webp" alt=""
+                            className={
+                                clsx(
+                                    "rounded-full w-[120%] aspect-square object-cover blur-3xl z-0",
+                                )
+                            }
+                        />
+                    </div>
                     <div className="flex flex-col w-full overflow-y-auto">
                         {
                             Array(14).fill(null).map((_, key) => (

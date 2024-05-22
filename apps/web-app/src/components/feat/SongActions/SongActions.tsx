@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/ui/Button/Button"
 import { BaseComponentProps } from "@/models/component.model"
 import { IconHeart, IconHeartFilled, IconShoppingCart } from "@tabler/icons-react"
