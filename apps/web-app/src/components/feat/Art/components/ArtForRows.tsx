@@ -13,7 +13,7 @@ export const ArtForRows: LinkPartialType = ({ className, ...props }) => {
             href={frontRoutes.dynamics.art({ artistName: 'joyolababy', artName: 'nollia' })}
             className={
                 clsx(
-                    "gap-2 !no-underline items-center hover:bg-bg-primary/70 cursor-pointer bg-transparent border-border-primary/40 p-2 relative overflow-hidden flex flex-col justify-center transition-all border-r-2 rounded-none",
+                    "gap-2 !no-underline items-center cursor-pointer bg-transparent p-2 relative overflow-hidden flex flex-col justify-center transition-all rounded-none",
                     className
                 )
             }

@@ -32,7 +32,7 @@ export const Link: React.FC<Props> = forwardRef<HTMLAnchorElement, Props>(
         onClick={handleOnClick}
         className={
           clsx(
-            styles === 'link' && 'text-blue-400 hover:underline',
+            styles === 'link' && 'text-blue-400 hover:text-blue-200 transition-colors font-bold hover:underline',
             'font-medium',
             className
           )
