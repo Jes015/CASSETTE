@@ -7,13 +7,13 @@ interface ColumnArtProps extends PartialSectionProps {
     headerProps: PartialSectionHeaderProps
 }
 
-export const ColumnArt: FC<ColumnArtProps> = ({ className, children, ...props }) => {
+export const ColumnArt: FC<ColumnArtProps> = ({ className, headerProps, children, ...props }) => {
     return (
         <Section
             type="secondary"
             className={
                 clsx(
-                    "!gap-0 min-w-80",
+                    "!gap-0 min-w-80 !border-b-0",
                     className
                 )
             }
@@ -23,6 +23,7 @@ export const ColumnArt: FC<ColumnArtProps> = ({ className, children, ...props })
                 title="Activity"
                 type="secondary"
                 description="Recent content of the artist"
+                {...headerProps}
             />
             <Section.Content
                 className="flex-col !gap-0"
