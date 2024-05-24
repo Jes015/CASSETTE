@@ -1,0 +1,1 @@
+export type Title = 'primary' | 'secondary' | 'tertiary' | 'quaternary'

@@ -8,12 +8,13 @@ import { FC, MouseEvent } from "react"
 
 interface RoundedPlaySongProps extends BaseComponentProps {
     art?: string
-    size?: 'small' | 'big'
+    size?: 'small' | 'big' | 'resize'
+    rounded?: boolean
 }
 
-export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg', size = 'small', className, ...props }) => {
+export const PlaySongButton: FC<RoundedPlaySongProps> = ({ art = 'https://i.ytimg.com/vi/ssdN7ZfavHs/maxresdefault.jpg', size = 'small', className, rounded = true, ...props }) => {
 
-    const handleOnClickToPlayArt = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleOnClickToPlayArt = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         e.preventDefault()
         e.stopPropagation()
 
@@ -22,27 +23,30 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
 
     return (
         <div
-            onClick={handleOnClickToPlayArt}
             className={
                 clsx(
-                    "relative overflow-hidden rounded-full",
+                    "relative overflow-hidden",
+                    rounded && 'rounded-full',
                     size === 'big' && 'w-40 h-40',
-                    size === 'small' && 'w-14 h-14'
+                    size === 'small' && 'w-14 h-14',
+                    size === 'resize' && 'aspect-square !h-40'
                 )
             }
             {...props}
         >
             <Image
                 loading="eager"
-                width={size === 'big' ? 160 : 90}
-                height={size === 'big' ? 160 : 90}
+                width={size === 'big' ? 160 : size === 'resize' ? 400 : 90}
+                height={size === 'big' ? 160 : size === 'resize' ? 400 : 90}
                 src="/tainy.webp"
                 alt=""
                 className={
                     clsx(
-                        "!rounded-full w-14 h-14 aspect-square object-cover",
+                        "aspect-square object-cover",
+                        rounded ? '!rounded-full' : '!rounded-none',
                         size === 'big' && 'w-40 !h-40',
-                        size === 'small' && 'w-14 !h-14'
+                        size === 'small' && 'w-14 !h-14',
+                        size === 'resize' && '!w-full !h-40'
                     )
                 }
             />
@@ -51,7 +55,12 @@ export const RoundedPlaySong: FC<RoundedPlaySongProps> = ({ art = 'https://i.yti
             >
                 <button
                     onClick={handleOnClickToPlayArt}
-                    className="z-40 flex items-center w-full h-full justify-center rounded-full bg-bg-primary/80 p-2 opacity-40 hover:opacity-85 transition-all"
+                    className={
+                        clsx(
+                            "z-40 flex items-center w-full h-full justify-center bg-bg-primary/80 p-2 opacity-40 hover:opacity-85 transition-all",
+                            rounded && 'rounded-full'
+                        )
+                    }
                 >
                     <IconPlayerPlayFilled
                         width={size === 'small' ? 28 : 54}
