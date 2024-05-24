@@ -4,7 +4,7 @@ import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
 import clsx from "clsx"
-import { RoundedPlaySong } from "../../RoundedPlaySong/RoundedPlaySong"
+import { PlaySongButton } from "../../PlaySongButton/PlaySongButton"
 import { SongActions } from "../../SongActions/SongActions"
 
 export const ArtForColumns: BaseComponentType = ({ className }) => {
@@ -19,7 +19,7 @@ export const ArtForColumns: BaseComponentType = ({ className }) => {
                 )
             }
         >
-            <RoundedPlaySong />
+            <PlaySongButton />
             <div className="flex flex-col justify-center gap-2 flex-grow">
                 <div className="flex flex-col gap-[0.01rem] items-start">
                     <div className="flex gap-[0.1rem] items-center">

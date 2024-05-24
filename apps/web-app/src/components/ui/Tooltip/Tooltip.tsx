@@ -20,7 +20,7 @@ export const Tooltip: FC<TooltipProps> = ({ trigger, content, contentProps, ...p
                 </Trigger>
                 <Portal>
                     <Content sideOffset={5} {...contentProps}>
-                        <Sheet className="px-2 border-border-primary/70">
+                        <Sheet className="px-2 border-border-primary/70 !z-[500000000000]">
                             {content}
                         </Sheet>
                         <Arrow className="fill-border-primary" />

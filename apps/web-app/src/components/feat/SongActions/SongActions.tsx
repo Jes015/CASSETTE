@@ -15,6 +15,7 @@ export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', .
 
     const handleOnClickAction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
+        e.stopPropagation()
     }
 
     let iconsWidth = 18

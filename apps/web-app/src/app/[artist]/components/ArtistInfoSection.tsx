@@ -1,4 +1,4 @@
-import { RoundedPlaySong } from "@/components/feat/RoundedPlaySong/RoundedPlaySong"
+import { PlaySongButton } from "@/components/feat/PlaySongButton/PlaySongButton"
 import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button/Button"
 import { Link } from "@/components/ui/Link/Link"
@@ -27,7 +27,7 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
             >
                 <div className="inline-flex flex-grow items-start">
                     <div>
-                        <RoundedPlaySong className="flex-shrink-0" size="big" />
+                        <PlaySongButton className="flex-shrink-0" size="big" />
                     </div>
                     <div
                         className="flex flex-grow flex-col gap-1"
