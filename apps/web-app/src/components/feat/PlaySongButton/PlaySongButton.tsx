@@ -51,7 +51,7 @@ export const PlaySongButton: FC<RoundedPlaySongProps> = ({ art = 'https://i.ytim
                 }
             />
             <div
-                className="flex justify-center items-center w-full h-full absolute top-0 left-0"
+                className="flex justify-center items-center w-full h-full absolute top-0 left-0 z-0"
             >
                 <button
                     onClick={handleOnClickToPlayArt}
