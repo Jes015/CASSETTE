@@ -1,16 +1,29 @@
+'use client'
 import { PlaySongButton } from "@/components/feat/PlaySongButton/PlaySongButton"
 import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button/Button"
+import { Input } from "@/components/ui/Input/Input"
 import { Link } from "@/components/ui/Link/Link"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { Section } from "@/components/ui/Section/Section"
+import { TextField } from "@/components/ui/TextField/TextField"
 import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
-import { IconMessage2, IconPlus, IconUserPlus } from "@tabler/icons-react"
+import { IconCheck, IconEdit, IconMessage2, IconPlus, IconUserPlus, IconX } from "@tabler/icons-react"
 import clsx from "clsx"
+import { useState } from "react"
 
 export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) => {
+    const [editMode, setEditMode] = useState(false)
+
     const isProfileOwner = true
+
+    const activateEditMode = editMode && isProfileOwner
+
+    const handleOnClickToActivateEditMode = () => {
+        setEditMode((prev) => !prev)
+    }
+
     return (
         <Section
             className={
@@ -34,13 +47,46 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                     >
                         <div className="flex justify-between items-center mt-4">
                             <div className="flex gap-2 items-center justify-between w-full">
-                                <Title as="secondary" className="pl-1">joyolababy</Title>
+                                {
+                                    activateEditMode
+                                        ?
+                                        (
+                                            <TextField className="h-[40px]" as="secondary">
+                                                <Input defaultValue='joyolababy' size="xl" className="px-1" />
+                                            </TextField>
+                                        )
+                                        :
+                                        (
+                                            <Title as="secondary" className="pl-1">joyolababy</Title>
+                                        )
+                                }
                                 <div className="flex mt-1 gap-1 items-start flex-shrink-0">
-                                    <Badge size="big" className="">Singer</Badge>
-                                    <Badge size="big" className="">Producer</Badge>
-                                    <Badge size="big" className="">Artist</Badge>
                                     {
-                                        isProfileOwner && (
+                                        ['Singer', 'Producer', 'Artist'].map((legend) => (
+                                            <Badge
+                                                key={legend}
+                                                size="big"
+                                                className={
+                                                    clsx(
+                                                        activateEditMode && 'flex items-center gap-[0.2rem] pl-1 justify-between'
+                                                    )
+                                                }
+                                            >
+                                                {
+                                                    activateEditMode && (
+                                                        <button className="flex items-center pt-[0.1rem]">
+                                                            <IconX className="text-zinc-400" width={14} height={14} />
+                                                        </button>
+                                                    )
+                                                }
+                                                <span>
+                                                    {legend}
+                                                </span>
+                                            </Badge>
+                                        ))
+                                    }
+                                    {
+                                        activateEditMode && (
                                             <Badge
                                                 as="button"
                                                 size="big"
@@ -56,21 +102,64 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                         <div
                             className="flex items-start justify-between pl-1 gap-2"
                         >
-                            <div>
-                                <Paragraph as="quaternary">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores excepturi voluptate, iste nemo ratione reiciendis provident saepe dolor libero nostrum nihil quia dicta totam odit! Saepe ducimus corporis minima incidunt.
-                                </Paragraph>
+                            <div className="w-full">
+                                {
+                                    activateEditMode
+                                        ? (
+                                            <textarea
+                                                className="outline-none text-xs bg-transparent text-text-tertiary w-full h-[48px] font-medium"
+                                            >
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus recusandae modi voluptates nam asperiores adipisci provident ea neque eligendi similique ab architecto, exercitationem libero tenetur enim aperiam, sed unde itaque!
+                                            </textarea>
+                                        )
+                                        : (
+                                            <Paragraph as="quaternary" className="line-clamp-3">
+                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores excepturi voluptate, iste nemo ratione reiciendis provident saepe dolor libero nostrum nihil quia dicta totam odit! Saepe ducimus corporis minima incidunt.
+                                            </Paragraph>
+                                        )
+                                }
                             </div>
-                            <div className="flex gap-1">
-                                <Button>
-                                    <IconMessage2 width={18} height={18}/>
-                                </Button>
-                                <Button>
-                                    <IconUserPlus width={18} height={18}/>
-                                </Button>
+                            <div className="flex gap-1 flex-shrink-0">
+                                {
+                                    !isProfileOwner && (
+                                        <>
+                                            <Button>
+                                                <IconMessage2 width={18} height={18} />
+                                            </Button>
+                                            <Button>
+                                                <IconUserPlus width={18} height={18} />
+                                            </Button>
+                                        </>
+                                    )
+                                }
+                                {
+                                    isProfileOwner && (
+                                        <>
+                                            {
+                                                !editMode && (
+                                                    <Button onClick={handleOnClickToActivateEditMode} className="flex-shrink-0">
+                                                        <IconEdit width={18} height={18} />
+                                                    </Button>
+                                                )
+                                            }
+                                            {
+                                                activateEditMode && editMode && (
+                                                    <>
+                                                        <Button onClick={handleOnClickToActivateEditMode} className="flex-shrink-0">
+                                                            <IconX width={18} height={18} />
+                                                        </Button>
+                                                        <Button onClick={handleOnClickToActivateEditMode} className="flex-shrink-0">
+                                                            <IconCheck width={18} height={18} />
+                                                        </Button>
+                                                    </>
+                                                )
+                                            }
+                                        </>
+                                    )
+                                }
                             </div>
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 pl-1">
                             <Link className="text-xs" href='/a' styles="link">Facebook</Link>
                             <Link className="text-xs" href='/a' styles="link">Instagram</Link>
                             <Link className="text-xs" href='/a' styles="link">Twitter</Link>
