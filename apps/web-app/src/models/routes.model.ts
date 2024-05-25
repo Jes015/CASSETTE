@@ -51,6 +51,29 @@ export const frontRoutes = {
                 }
             }
         },
+        upload: {
+            name: 'Upload',
+            path: '/upload',
+            subRoutes: {
+                beat: {
+                    name: 'Beat',
+                    path: '/upload/beat'
+                },
+                cover: {
+                    name: 'Cover',
+                    path: '/upload/cover'
+                },
+                melodies: {
+                    name: 'Melody',
+                    path: '/upload/melodies'
+                },
+                projectFiles: {
+                    name: 'Project files',
+                    path: '/upload/project-files'
+                }
+
+            }
+        }
     },
     dynamics: {
         artist: ({ artistName }: FrontArtistDynamicRouteParams) => {
