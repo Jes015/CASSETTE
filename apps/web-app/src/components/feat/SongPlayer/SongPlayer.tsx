@@ -46,7 +46,7 @@ export const SongPlayer: BaseComponentType = (props) => {
                 <Section.Header
                     title="Song player"
                     type="secondary"
-                    className="z-50 !bg-bg-primary/20 p-1 pl-2"
+                    className="z-50 !bg-bg-primary/20 !p-1 !pl-2"
                     rightNode={
                         <div className="flex items-stretch">
                             <button className="hover:bg-bg-tertiary rounded-md p-1" onClick={handleOnClickToDisplayAll}>
