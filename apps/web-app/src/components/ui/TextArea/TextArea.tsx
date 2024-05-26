@@ -10,9 +10,9 @@ const TextArea: FC<TextArea> = ({ className, variant, ...props }) => {
         <textarea
             className={
                 clsx(
-                    'outline-none transition-colors w-full h-[48px] text-xs',
+                    'outline-none transition-colors w-full h-[100px] text-xs',
                     variant === 'transparent' ? 'bg-transparent text-text-tertiary font-medium' : 'text-zinc-200 hover:text-zinc-100',
-                    variant === 'base' && 'bg-bg-primary p-2 rounded-md border border-border-primary/40 hover:border-border-primary focus-within:border-border-primary',
+                    variant === 'base' && 'bg-bg-primary hover:bg-bg-tertiary/15 focus-within:bg-bg-tertiary/15 p-2 rounded-md border border-border-primary/40 hover:border-border-primary focus-within:border-border-primary',
                     className
                 )
             }
