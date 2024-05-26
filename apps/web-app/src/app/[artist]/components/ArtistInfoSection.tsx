@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/Input/Input"
 import { Link } from "@/components/ui/Link/Link"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { Section } from "@/components/ui/Section/Section"
+import TextArea from "@/components/ui/TextArea/TextArea"
 import { TextField } from "@/components/ui/TextField/TextField"
 import { Title } from "@/components/ui/Title/Title"
 import { BaseComponentType } from "@/models/component.model"
@@ -52,7 +53,7 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                         ?
                                         (
                                             <TextField className="h-[40px]" as="secondary">
-                                                <Input defaultValue='joyolababy' size="xl" className="px-1" />
+                                                <Input defaultValue='joyolababy' size="xl" variant="transparent" className="px-1" />
                                             </TextField>
                                         )
                                         :
@@ -106,11 +107,12 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                 {
                                     activateEditMode
                                         ? (
-                                            <textarea
+                                            <TextArea
+                                                variant="transparent"
                                                 className="outline-none text-xs bg-transparent text-text-tertiary w-full h-[48px] font-medium"
                                             >
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus recusandae modi voluptates nam asperiores adipisci provident ea neque eligendi similique ab architecto, exercitationem libero tenetur enim aperiam, sed unde itaque!
-                                            </textarea>
+                                            </TextArea>
                                         )
                                         : (
                                             <Paragraph as="quaternary" className="line-clamp-3">
