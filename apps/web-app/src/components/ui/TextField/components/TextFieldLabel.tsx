@@ -6,7 +6,6 @@ export const TextFieldLabel: BaseComponentType = ({ className, ...props }) => {
         <span
             className={
                 clsx(
-                    '',
                     className
                 )
             }

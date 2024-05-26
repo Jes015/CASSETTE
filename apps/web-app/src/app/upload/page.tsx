@@ -1,43 +1,57 @@
-import { Button } from "@/components/ui/Button/Button"
+import { Link } from "@/components/ui/Link/Link"
 import { Section } from "@/components/ui/Section/Section"
 import { PageType } from "@/models/page.model"
-import { IconCamera, IconDna, IconMusic, IconVinyl } from "@tabler/icons-react"
+import { frontRoutes } from "@/models/routes.model"
+import { IconDna, IconMusic, IconRectangle, IconVinyl } from "@tabler/icons-react"
 
+
+const uploadSubRoutes = [
+    {
+        ...frontRoutes.static.upload.subRoutes.beat,
+        icon: IconVinyl
+    },
+    {
+        ...frontRoutes.static.upload.subRoutes.cover,
+        icon: IconRectangle
+    },
+    {
+        ...frontRoutes.static.upload.subRoutes.melodies,
+        icon: IconMusic
+    },
+    {
+        ...frontRoutes.static.upload.subRoutes.projectFiles,
+        icon: IconDna
+    },
+]
 const UploadPage: PageType = () => {
     return (
-        <div className="flex items-center justify-center w-full h-full">
-            <Section
+        <Section
+            type="secondary"
+            className="m-auto !w-fit !gap-0"
+        >
+            <Section.Header
+                title="Select the type of art to upload"
                 type="secondary"
-                className="m-auto !w-fit !gap-0"
+            />
+            <Section.Content
+                className="p-1"
             >
-                <Section.Header
-                    title="Select the type of art to upload"
-                    type="secondary"
-                />
-                <Section.Content
-                    className="p-1"
-                >
-                    <div className="grid grid-cols-2 gap-1">
-                        <Button className="flex items-center gap-1">
-                            <IconVinyl className="text-zinc-200" />
-                            <span className="font-medium text-zinc-300 text-xs">Beat</span>
-                        </Button>
-                        <Button className="flex items-center gap-1">
-                            <IconCamera className="text-zinc-200" />
-                            <span className="font-medium text-zinc-300 text-xs">Cover</span>
-                        </Button>
-                        <Button className="flex items-center gap-1">
-                            <IconMusic className="text-zinc-200" />
-                            <span className="font-medium text-zinc-300 text-xs">Melodies</span>
-                        </Button>
-                        <Button className="flex items-center gap-1">
-                            <IconDna className="text-zinc-200" />
-                            <span className="font-medium text-zinc-300 text-xs">Project files</span>
-                        </Button>
-                    </div>
-                </Section.Content>
-            </Section>
-        </div>
+                <div className="grid grid-cols-2 gap-1">
+                    {
+                        uploadSubRoutes.map((uploadRoute) => (
+                            <Link
+                                href={uploadRoute.path}
+                                className="flex items-center gap-2 border-2 rounded-md p-2 flex-grow bg-bg-primary hover:bg-bg-tertiary/20 border-border-secondary justify-center transition-colors"
+                                key={uploadRoute.name}
+                            >
+                                <uploadRoute.icon className="text-zinc-200" />
+                                <span className="font-medium text-zinc-300 text-xs">{uploadRoute.name}</span>
+                            </Link>
+                        ))
+                    }
+                </div>
+            </Section.Content>
+        </Section>
     )
 }
 

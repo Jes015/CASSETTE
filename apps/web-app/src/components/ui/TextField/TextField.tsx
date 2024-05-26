@@ -11,7 +11,7 @@ export const TextField = ({ as, className, ...props }: TextFieldProps) => {
         <label
             className={
                 clsx(
-                    'flex flex-col gap-1',
+                    'flex flex-col',
                     as === 'secondary' && 'text-sm text-text-secondary font-medium',
                     as === 'tertiary' && 'text-xs',
                     className

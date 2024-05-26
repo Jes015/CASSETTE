@@ -53,7 +53,7 @@ export const Sidebar: BaseComponentType = () => {
             >
                 <SidebarLink
                     route={frontRoutes.static.upload}
-                    currentPage={currentPathname === frontRoutes.static.upload.path}
+                    currentPage={currentPathname.includes(frontRoutes.static.upload.path)}
                 >
                     <IconPlus {...iconsSize} />
                 </SidebarLink>
