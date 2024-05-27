@@ -73,6 +73,32 @@ export const frontRoutes = {
                 }
 
             }
+        },
+        auth: {
+            name: 'Auth',
+            path: '/auth',
+            subRoutes: {
+                signIn: {
+                    name: 'Sign in',
+                    path: '/auth/sign-in'
+                },
+                signUp: {
+                    name: 'Sign up',
+                    path: '/auth/sign-up'
+                },
+                accessCode: {
+                    name: 'Sign in by email code',
+                    path: '/auth/access-code'
+                },
+                resetPassword: {
+                    name: 'Reset password',
+                    path: '/auth/reset-password'
+                },
+                reportAuth: {
+                    name: 'Report auth bug',
+                    path: '/auth/report'
+                }
+            }
         }
     },
     dynamics: {

@@ -27,8 +27,8 @@ export const ArtForColumns: BaseComponentType = ({ className }) => {
                         <Badge className="mt-1 scale-95">Beat</Badge>
                     </div>
                     <div>
-                        <Badge className="scale-95" styles="primary">Regueton</Badge>
-                        <Badge className="scale-95" styles="primary">92 BPM</Badge>
+                        <Badge className="scale-95" variant="primary">Regueton</Badge>
+                        <Badge className="scale-95" variant="primary">92 BPM</Badge>
                     </div>
                 </div>
             </div>
