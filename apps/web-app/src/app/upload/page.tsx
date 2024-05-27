@@ -41,8 +41,8 @@ const UploadPage: PageType = () => {
                         uploadSubRoutes.map((uploadRoute) => (
                             <Link
                                 href={uploadRoute.path}
-                                className="flex items-center gap-2 border-2 rounded-md p-2 flex-grow bg-bg-primary hover:bg-bg-tertiary/20 border-border-secondary justify-center transition-colors"
                                 key={uploadRoute.name}
+                                variant="button"
                             >
                                 <uploadRoute.icon className="text-zinc-200" />
                                 <span className="font-medium text-zinc-300 text-xs">{uploadRoute.name}</span>

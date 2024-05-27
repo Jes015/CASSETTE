@@ -3,12 +3,12 @@ import clsx from "clsx"
 import { FC } from "react"
 
 interface BadgeProps extends BaseComponentProps {
-    styles?: 'primary' | 'secondary' | 'tertiary'
+    variant?: 'primary' | 'secondary' | 'tertiary'
     size?: 'small' | 'big'
     as?: keyof JSX.IntrinsicElements
 }
 
-export const Badge: FC<BadgeProps> = ({ className, as, size = 'small',styles: color = 'primary', ...props }) => {
+export const Badge: FC<BadgeProps> = ({ className, as, size = 'small',variant: color = 'primary', ...props }) => {
     const Element = as ?? 'div'
 
     return (

@@ -91,7 +91,7 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                             <Badge
                                                 as="button"
                                                 size="big"
-                                                styles="tertiary"
+                                                variant="tertiary"
                                                 className="!flex !self-stretch justify-center items-center cursor-pointer">
                                                 <IconPlus width={14} height={14} />
                                             </Badge>
@@ -162,10 +162,10 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                             </div>
                         </div>
                         <div className="flex items-center gap-1 pl-1">
-                            <Link className="text-xs" href='/a' styles="link">Facebook</Link>
-                            <Link className="text-xs" href='/a' styles="link">Instagram</Link>
-                            <Link className="text-xs" href='/a' styles="link">Twitter</Link>
-                            <Link className="text-xs" href='/a' styles="link">My web site</Link>
+                            <Link className="text-xs" href='/a' variant="link">Facebook</Link>
+                            <Link className="text-xs" href='/a' variant="link">Instagram</Link>
+                            <Link className="text-xs" href='/a' variant="link">Twitter</Link>
+                            <Link className="text-xs" href='/a' variant="link">My web site</Link>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { useOnPageLoad } from "@/hooks/useOnPageLoad"
-import { globalLoaderService } from "@/services/client/global-loader.client-service"
+import { globalLoaderService } from "@/services/client/CustomEvents/global-loader.client-service-custom-events"
 import { useEffect, useState } from "react"
 
 export const useGlobalLinearLoader = () => {

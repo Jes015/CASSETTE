@@ -1,4 +1,4 @@
-import { songPlayerService } from "@/services/client/song-player.client-service"
+import { songPlayerService } from "@/services/client/CustomEvents/song-player.client-service-custom-events"
 import { useEffect, useState } from "react"
 
 export type PlayerVisibleStatus = 'no-visible' | 'only-player' | 'visible'
