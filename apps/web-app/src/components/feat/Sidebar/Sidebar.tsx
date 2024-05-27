@@ -4,7 +4,7 @@ import { useRouting } from "@/hooks/useRouting"
 import { BaseComponentType } from "@/models/component.model"
 import { frontRoutes } from "@/models/routes.model"
 import { HeartIcon, HomeIcon, MagicWandIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
-import { IconPlus, IconSettings, IconUser } from "@tabler/icons-react"
+import { IconLock, IconPlus, IconSettings, IconUser } from "@tabler/icons-react"
 import { SidebarLink } from "./components/SidebarLink"
 
 
@@ -31,6 +31,11 @@ export const Sidebar: BaseComponentType = () => {
     const { currentPathname } = useRouting()
 
     const iconsSize = { width: 19, height: 19 }
+
+    const isAuth = true
+
+    const userPath = isAuth ? { name: frontRoutes.static.artist.name, path: frontRoutes.dynamics.artist({ artistName: 'joyolababy' }) } : frontRoutes.static.auth
+
     return (
         <Sheet
             border="right"
@@ -58,10 +63,12 @@ export const Sidebar: BaseComponentType = () => {
                     <IconPlus {...iconsSize} />
                 </SidebarLink>
                 <SidebarLink
-                    route={{ name: frontRoutes.static.artist.name, path: frontRoutes.dynamics.artist({ artistName: 'joyolababy' }) }}
-                    currentPage={currentPathname === '/joyolababy'}
+                    route={userPath}
+                    currentPage={ isAuth ? currentPathname === '/joyolababy' : currentPathname.includes(frontRoutes.static.auth.path)}
                 >
-                    <IconUser {...iconsSize} />
+                    {
+                        isAuth ? <IconUser {...iconsSize} /> : <IconLock {...iconsSize}/>
+                    }
                 </SidebarLink>
                 <SidebarLink
                     route={frontRoutes.static.settings}

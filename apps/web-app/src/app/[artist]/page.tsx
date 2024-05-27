@@ -5,9 +5,9 @@ import { ArtistInfoSection } from "./components/ArtistInfoSection"
 import { SelectedByUserSection } from "./components/SelectedByUserSection"
 
 const ArtistPage: PageType = ({ params }) => {
-    const artistParam = params?.[frontRoutes.static.artist.paramName]
+    const artistUsernameParam = params?.[frontRoutes.static.artist.paramName]
 
-    console.log({ artistParam })
+    console.log({ artistParam: artistUsernameParam })
     return (
         <div
             className="flex items-start gap-4"
