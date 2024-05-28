@@ -77,6 +77,8 @@ node_modules
 .pnp.js
 .yarn/install-state.gz
 
+postgres
+
 # testing
 coverage
 
@@ -85,7 +87,7 @@ coverage
 out/
 
 # production
-/build
+build
 
 # misc
 .DS_Store
