@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Auth } from './decorators/auth.decorator';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
 
@@ -18,6 +19,7 @@ export class AuthController {
   }
 
   @Post('/delete')
+  @Auth('Admin')
   deleteAll() {
     return this.authService.deleteUsers();
   }

@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
   imports: [
     ConfigModule.forRoot({
       validationSchema: envValidation,
+      isGlobal: true,
     }),
     UserModule,
     TypeOrmModule.forRoot({

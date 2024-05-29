@@ -27,6 +27,8 @@ export const userSystemRoles = {
 export type UserSystemRolesType =
   (typeof userSystemRoles)[keyof typeof userSystemRoles];
 
+export type UserSystemRolesArrayType = UserSystemRolesType[];
+
 export const userStatus = {
   Banned: 'Banned',
   Active: 'Active',
