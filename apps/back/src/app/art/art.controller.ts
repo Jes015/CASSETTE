@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
 } from '@nestjs/common';
+import { UUID } from 'crypto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { GetUser } from '../auth/decorators/user.decorator';
 import { UserEntity } from '../user/entities/user.entity';
@@ -28,9 +30,9 @@ export class ArtController {
     return this.artService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.artService.findOne(+id);
+  @Get(':artId')
+  findOne(@Param('artId', ParseUUIDPipe) id: UUID) {
+    return this.artService.findOne(id);
   }
 
   @Patch(':id')

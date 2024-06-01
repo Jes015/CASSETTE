@@ -1,5 +1,10 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UUID } from 'crypto';
 import { createAndSaveEntry } from 'src/common/utils/postgres.util';
 import { adaptResponse } from 'src/common/utils/response.util';
 import { Repository } from 'typeorm';
@@ -58,8 +63,17 @@ export class ArtService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} art`;
+  async findOne(artId: UUID) {
+    const artFound = await this.artRepository.findOne({
+      where: { id: artId },
+      relations: ['owner', 'collaborators'],
+    });
+
+    if (artFound == null) {
+      throw new NotFoundException(`Art with id ${artId} not found`);
+    }
+
+    return artFound;
   }
 
   update(id: number) {
