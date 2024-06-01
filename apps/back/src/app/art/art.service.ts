@@ -6,7 +6,6 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { createAndSaveEntry } from 'src/common/utils/postgres.util';
-import { adaptResponse } from 'src/common/utils/response.util';
 import { Repository } from 'typeorm';
 import { UserEntity, UserEntityArray } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
@@ -38,7 +37,7 @@ export class ArtService {
 
         const userFound = await this.userService.findOne(userId);
 
-        collaborators.push(userFound?.data);
+        collaborators.push(userFound);
       }
     }
 
@@ -53,7 +52,7 @@ export class ArtService {
       newArt,
     );
 
-    return adaptResponse(200, artCreated);
+    return artCreated;
   }
 
   async findAll() {
@@ -80,7 +79,16 @@ export class ArtService {
     return `This action updates a #${id} art`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} art`;
+  async remove(artId: UUID, userId: UUID) {
+    const { affected } = await this.artRepository.delete({
+      id: artId,
+      owner: { id: userId },
+    });
+
+    if (affected === 0) {
+      throw new NotFoundException(`Art with id ${artId} not found`);
+    }
+
+    return `Art with id ${artId} deleted`;
   }
 }

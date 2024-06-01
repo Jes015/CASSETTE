@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
-import { adaptResponse } from 'src/common/utils/response.util';
 import { Repository } from 'typeorm';
 import { UserEntity } from './entities/user.entity';
 
@@ -19,6 +18,6 @@ export class UserService {
       throw new NotFoundException(`User with id ${userId} not found`);
     }
 
-    return adaptResponse(200, userFound);
+    return userFound;
   }
 }

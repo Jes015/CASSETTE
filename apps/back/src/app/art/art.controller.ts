@@ -40,8 +40,12 @@ export class ArtController {
     return this.artService.update(+id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.artService.remove(+id);
+  @Delete(':artId')
+  @Auth()
+  remove(
+    @Param('artId', ParseUUIDPipe) artId: UUID,
+    @GetUser('id') userId: UUID,
+  ) {
+    return this.artService.remove(artId, userId);
   }
 }
