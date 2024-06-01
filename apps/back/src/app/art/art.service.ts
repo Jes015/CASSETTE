@@ -51,8 +51,11 @@ export class ArtService {
     return adaptResponse(200, artCreated);
   }
 
-  findAll() {
-    return this.artRepository.find({});
+  async findAll() {
+    return await this.artRepository.find({
+      relations: ['owner', 'collaborators'],
+      order: { created_at: { direction: 'DESC' } },
+    });
   }
 
   findOne(id: number) {
