@@ -1,0 +1,69 @@
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { createAndSaveEntry } from 'src/common/utils/postgres.util';
+import { adaptResponse } from 'src/common/utils/response.util';
+import { Repository } from 'typeorm';
+import { UserEntity, UserEntityArray } from '../user/entities/user.entity';
+import { UserService } from '../user/user.service';
+import { CreateArtDto } from './dto/create-art.dto';
+import { ArtEntity, ArtEntityPartial } from './entities/art.entity';
+
+@Injectable()
+export class ArtService {
+  constructor(
+    @InjectRepository(ArtEntity)
+    private readonly artRepository: Repository<ArtEntity>,
+
+    private readonly userService: UserService,
+  ) {}
+
+  async create(createArtDto: CreateArtDto, user: UserEntity) {
+    const collaborators: UserEntityArray =
+      createArtDto.collaborators == null ? null : [];
+
+    if (createArtDto.collaborators != null) {
+      for (let a = 0; a < createArtDto.collaborators.length; a++) {
+        const userId = createArtDto.collaborators[a];
+
+        if (user.id === userId) {
+          throw new BadRequestException(
+            'You can not assign the same user to the collaborators list. This will be reported with your ip',
+          );
+        }
+
+        const userFound = await this.userService.findOne(userId);
+
+        collaborators.push(userFound?.data);
+      }
+    }
+
+    const newArt: ArtEntityPartial = {
+      ...createArtDto,
+      collaborators,
+      owner: user,
+    };
+
+    const artCreated = await createAndSaveEntry<ArtEntity>(
+      this.artRepository,
+      newArt,
+    );
+
+    return adaptResponse(200, artCreated);
+  }
+
+  findAll() {
+    return this.artRepository.find({});
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} art`;
+  }
+
+  update(id: number) {
+    return `This action updates a #${id} art`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} art`;
+  }
+}

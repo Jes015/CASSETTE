@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UUID } from 'crypto';
 import { adaptResponse } from 'src/common/utils/response.util';
@@ -15,7 +15,9 @@ export class UserService {
   async findOne(userId: UUID) {
     const userFound = await this.userRepository.findOneBy({ id: userId });
 
-    if (userFound == null) return;
+    if (userFound == null) {
+      throw new NotFoundException(`User with id ${userId} not found`);
+    }
 
     return adaptResponse(200, userFound);
   }
