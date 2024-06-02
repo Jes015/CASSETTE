@@ -1,5 +1,13 @@
 import { UUID } from 'crypto';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ArtEntity, ArtEntityArray } from 'src/app/art/entities/art.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import {
   UserRolesType,
   UserStatusType,
@@ -52,4 +60,15 @@ export class UserEntity {
     enum: userRoles,
   })
   roles: UserRolesType;
+
+  @OneToMany(() => ArtEntity, (art) => art.owner)
+  artsOwned: ArtEntityArray;
+
+  @ManyToMany(() => ArtEntity, (art) => art.collaborators)
+  @JoinTable()
+  artsCollaboration: ArtEntityArray;
 }
+
+export type UserEntityArray = UserEntity[];
+
+export type UserKey = keyof UserEntity;

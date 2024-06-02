@@ -7,8 +7,8 @@ import {
 import { Reflector } from '@nestjs/core';
 import { UserEntity } from 'src/app/user/entities/user.entity';
 import { UserSystemRolesArrayType } from 'src/app/user/models/user.model';
-import { SetRoles } from '../decorators/set-roles.decorator';
 import { BadCredentialsException } from 'src/common/exceptions/BadCredentials.exception';
+import { SetRoles } from '../decorators/set-roles.decorator';
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -22,7 +22,7 @@ export class RoleGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
     const userData = request.user as UserEntity;
-    const userRoles = userData.roles;
+    const userRoles = userData.systemRoles;
 
     if (userData == null) {
       throw new BadCredentialsException();
