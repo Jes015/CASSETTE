@@ -14,6 +14,7 @@ import { GetUser } from '../auth/decorators/user.decorator';
 import { UserEntity } from '../user/entities/user.entity';
 import { ArtService } from './art.service';
 import { CreateArtDto } from './dto/create-art.dto';
+import { UpdateArtDto } from './dto/update-art.dto';
 
 @Controller('art')
 export class ArtController {
@@ -36,8 +37,13 @@ export class ArtController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string) {
-    return this.artService.update(+id);
+  @Auth()
+  update(
+    @Param('id', ParseUUIDPipe) id: UUID,
+    @Body() updateArtDto: UpdateArtDto,
+    @GetUser('id') userId: UUID,
+  ) {
+    return this.artService.update(id, updateArtDto, userId);
   }
 
   @Delete(':artId')

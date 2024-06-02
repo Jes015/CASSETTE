@@ -10,6 +10,7 @@ import { Repository } from 'typeorm';
 import { UserEntity, UserEntityArray } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import { CreateArtDto } from './dto/create-art.dto';
+import { UpdateArtDto } from './dto/update-art.dto';
 import { ArtEntity, ArtEntityPartial } from './entities/art.entity';
 
 @Injectable()
@@ -22,24 +23,7 @@ export class ArtService {
   ) {}
 
   async create(createArtDto: CreateArtDto, user: UserEntity) {
-    const collaborators: UserEntityArray =
-      createArtDto.collaborators == null ? null : [];
-
-    if (createArtDto.collaborators != null) {
-      for (let a = 0; a < createArtDto.collaborators.length; a++) {
-        const userId = createArtDto.collaborators[a];
-
-        if (user.id === userId) {
-          throw new BadRequestException(
-            'You can not assign the same user to the collaborators list. This will be reported with your ip',
-          );
-        }
-
-        const userFound = await this.userService.findOne(userId);
-
-        collaborators.push(userFound);
-      }
-    }
+    const collaborators = await this.getCollaborators(createArtDto, user.id);
 
     const newArt: ArtEntityPartial = {
       ...createArtDto,
@@ -75,8 +59,35 @@ export class ArtService {
     return artFound;
   }
 
-  update(id: number) {
-    return `This action updates a #${id} art`;
+  async update(artId: UUID, updateArtDto: UpdateArtDto, userId: UUID) {
+    const artFound = await this.artRepository.findOne({
+      where: {
+        id: artId,
+        owner: {
+          id: userId,
+        },
+      },
+    });
+
+    if (artFound == null) {
+      throw new NotFoundException(`Art with id ${artId} not found`);
+    }
+
+    const collaborations =
+      (await this.getCollaborators(updateArtDto, userId)) ??
+      artFound.collaborators;
+
+    const newArtUpdated: ArtEntity = {
+      ...artFound,
+      ...updateArtDto,
+      collaborators: collaborations,
+    };
+
+    console.log({ ...updateArtDto });
+    const artUpdated = await this.artRepository.save(newArtUpdated);
+    console.log({ ...artUpdated });
+
+    return artUpdated;
   }
 
   async remove(artId: UUID, userId: UUID) {
@@ -90,5 +101,31 @@ export class ArtService {
     }
 
     return `Art with id ${artId} deleted`;
+  }
+
+  private async getCollaborators(
+    createArtDto: CreateArtDto | UpdateArtDto,
+    currentUserId: UUID,
+  ) {
+    const collaborators: UserEntityArray =
+      createArtDto?.collaborators == null ? null : [];
+
+    if (createArtDto?.collaborators != null) {
+      for (let a = 0; a < createArtDto?.collaborators.length; a++) {
+        const userId = createArtDto?.collaborators[a];
+
+        if (currentUserId === userId) {
+          throw new BadRequestException(
+            'You can not assign the same user to the collaborators list. This will be reported with your ip',
+          );
+        }
+
+        const userFound = await this.userService.findOne(userId);
+
+        collaborators.push(userFound);
+      }
+    }
+
+    return collaborators;
   }
 }
