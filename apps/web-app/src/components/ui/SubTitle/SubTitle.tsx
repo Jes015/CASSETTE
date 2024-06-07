@@ -1,5 +1,5 @@
-import { BaseComponentProps } from "@/models/component.model"
-import { Title } from "@/models/titles.model"
+import { BaseComponentProps } from "@/models/ui/component.model"
+import { Title } from "@/models/ui/titles.model"
 import clsx from "clsx"
 import { FC } from "react"
 

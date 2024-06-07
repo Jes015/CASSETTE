@@ -1,4 +1,4 @@
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from '@/models/ui/component.model'
 import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import { Content, Group, Icon, Label, Portal, Root, ScrollDownButton, ScrollUpButton, SelectItem, Separator, Trigger, Value, Viewport } from '@radix-ui/react-select'
 

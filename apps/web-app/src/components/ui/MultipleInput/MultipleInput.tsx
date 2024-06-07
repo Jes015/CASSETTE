@@ -1,5 +1,5 @@
 'use client'
-import { BaseComponentProps } from '@/models/component.model'
+import { BaseComponentProps } from '@/models/ui/component.model'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { CheckIcon, Cross2Icon } from '@radix-ui/react-icons'
 import clsx from 'clsx'

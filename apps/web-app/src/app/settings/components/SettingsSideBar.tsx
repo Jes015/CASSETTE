@@ -1,8 +1,8 @@
 'use client'
 import { Section } from "@/components/ui/Section/Section"
 import { useRouting } from "@/hooks/useRouting"
-import { BaseComponentType } from "@/models/component.model"
-import { frontRoutes } from "@/models/routes.model"
+import { frontRoutes } from "@/models/routing/routes.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import { IconBrush, IconCash, IconHome } from "@tabler/icons-react"
 import { SettingsLayoutLink } from "./SettingsLayoutLink"
 

@@ -3,8 +3,6 @@ import { Arrow, Content, PopperContentProps, Portal, Provider, Root, Trigger, ty
 import { FC } from "react"
 import { Sheet } from '../Sheet'
 
-
-
 interface TooltipProps extends DefaultTooltipProps {
     trigger: React.ReactNode
     content: React.ReactNode

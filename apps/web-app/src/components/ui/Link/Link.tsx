@@ -1,5 +1,5 @@
 'use client'
-import { BaseComponentProps } from '@/models/component.model'
+import { BaseComponentProps } from '@/models/ui/component.model'
 import { globalLoaderService } from '@/services/client/CustomEvents/global-loader.client-service-custom-events'
 import clsx from 'clsx'
 import DefaultLink, { type LinkProps } from 'next/link'

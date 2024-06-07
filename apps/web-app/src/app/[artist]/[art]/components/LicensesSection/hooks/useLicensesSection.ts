@@ -1,4 +1,4 @@
-import { License, licensesData } from "@/models/licenses.model"
+import { License, licensesData } from "@/models/logic/licenses.model"
 import { useState } from "react"
 
 export const useLicensesSection = () => {

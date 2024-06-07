@@ -1,4 +1,4 @@
-import { BaseComponentProps } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/ui/component.model"
 import { TableBody } from "./components/TableBody"
 import { TableColumn } from "./components/TableColumn"
 import { TableHeader } from "./components/TableHeader"

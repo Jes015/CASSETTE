@@ -1,6 +1,6 @@
 'use client'
 import { Image } from "@/components/ui/Image/Image"
-import { BaseComponentProps } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/ui/component.model"
 import { songPlayerService } from "@/services/client/CustomEvents/song-player.client-service-custom-events"
 import { IconPlayerPlayFilled } from "@tabler/icons-react"
 import clsx from "clsx"

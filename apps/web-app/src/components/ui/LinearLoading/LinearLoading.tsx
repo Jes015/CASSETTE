@@ -1,4 +1,4 @@
-import { BaseComponentType } from '@/models/component.model'
+import { BaseComponentType } from '@/models/ui/component.model'
 import clsx from 'clsx'
 import styles from './linear-loading.module.css'
 

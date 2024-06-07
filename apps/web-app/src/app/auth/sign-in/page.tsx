@@ -3,8 +3,8 @@ import { Input } from "@/components/ui/Input/Input"
 import { Link } from "@/components/ui/Link/Link"
 import { Section } from "@/components/ui/Section/Section"
 import { TextField } from "@/components/ui/TextField/TextField"
-import { PageType } from "@/models/page.model"
-import { frontRoutes } from "@/models/routes.model"
+import { PageType } from "@/models/routing/page.model"
+import { frontRoutes } from "@/models/routing/routes.model"
 
 const SignInPage: PageType = (props) => {
     return (

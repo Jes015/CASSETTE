@@ -2,7 +2,7 @@ import { Image } from "@/components/ui/Image/Image"
 import { Input } from "@/components/ui/Input/Input"
 import { Section } from "@/components/ui/Section/Section"
 import { TextField } from "@/components/ui/TextField/TextField"
-import { PageType } from "@/models/page.model"
+import { PageType } from "@/models/routing/page.model"
 import clsx from "clsx"
 
 const SettingsArtistPage: PageType = (props) => {

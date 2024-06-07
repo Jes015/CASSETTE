@@ -1,4 +1,4 @@
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 
 export const TableBody: BaseComponentType = (props) => {
     return (

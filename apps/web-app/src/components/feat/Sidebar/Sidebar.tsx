@@ -1,8 +1,8 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
 import { useRouting } from "@/hooks/useRouting"
-import { BaseComponentType } from "@/models/component.model"
-import { frontRoutes } from "@/models/routes.model"
+import { frontRoutes } from "@/models/routing/routes.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import { HeartIcon, HomeIcon, MagicWandIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
 import { IconLock, IconPlus, IconSettings, IconUser } from "@tabler/icons-react"
 import { SidebarLink } from "./components/SidebarLink"

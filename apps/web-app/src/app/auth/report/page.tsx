@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/Badge"
 import { Section } from "@/components/ui/Section/Section"
-import { PageType } from "@/models/page.model"
+import { PageType } from "@/models/routing/page.model"
 
 const ReportPage: PageType = (props) => {
     return (

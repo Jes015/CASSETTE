@@ -1,4 +1,4 @@
-import { PageType } from "@/models/page.model"
+import { PageType } from "@/models/routing/page.model"
 
 const TalentsPage: PageType = (props) => {
    return (

@@ -1,7 +1,7 @@
 'use client'
 import { Sheet } from "@/components/ui/Sheet"
 import { TextField } from "@/components/ui/TextField/TextField"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import clsx from "clsx"
 import { useSettingsThemeInput } from "./hooks/useSettingsThemeInput"
 import { ThemeType, themeData } from "./models/settingsThemeInput.model"

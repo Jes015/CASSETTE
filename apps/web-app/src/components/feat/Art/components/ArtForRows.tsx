@@ -1,7 +1,7 @@
 import { Link, LinkPartialType } from "@/components/ui/Link/Link"
 import { SubTitle } from "@/components/ui/SubTitle/SubTitle"
 import { Title } from "@/components/ui/Title/Title"
-import { frontRoutes } from "@/models/routes.model"
+import { frontRoutes } from "@/models/routing/routes.model"
 import clsx from "clsx"
 import { PlaySongButton } from "../../PlaySongButton/PlaySongButton"
 import { SongActions } from "../../SongActions/SongActions"

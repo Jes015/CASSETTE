@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button/Button"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { Section } from "@/components/ui/Section/Section"
 import { Title } from "@/components/ui/Title/Title"
-import { PageType } from "@/models/page.model"
+import { PageType } from "@/models/routing/page.model"
 import { SettingsThemeInput } from "./components/settingInputs/SettingsLanguageInput/SettingsLanguageInput"
 import { SettingsLanguageInput } from "./components/settingInputs/SettingsThemeInput/SettingsThemeInput"
 

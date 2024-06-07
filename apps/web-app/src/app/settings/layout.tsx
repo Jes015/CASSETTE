@@ -1,4 +1,4 @@
-import { LayoutType } from "@/models/page.model"
+import { LayoutType } from "@/models/routing/page.model"
 import { SettingsSideBar } from "./components/SettingsSideBar"
 
 const SettingsLayout: LayoutType = ({ children, ...props }) => {

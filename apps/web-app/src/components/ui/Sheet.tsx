@@ -1,5 +1,5 @@
 'use client'
-import { BaseComponentProps } from '@/models/component.model'
+import { BaseComponentProps } from '@/models/ui/component.model'
 import clsx from 'clsx'
 import { FC, forwardRef } from 'react'
 

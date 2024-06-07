@@ -4,7 +4,7 @@ import { MultipleInput } from "@/components/ui/MultipleInput/MultipleInput"
 import { Section } from "@/components/ui/Section/Section"
 import TextArea from "@/components/ui/TextArea/TextArea"
 import { TextField } from "@/components/ui/TextField/TextField"
-import { PageType } from "@/models/page.model"
+import { PageType } from "@/models/routing/page.model"
 
 const UploadPage: PageType = (props) => {
     return (

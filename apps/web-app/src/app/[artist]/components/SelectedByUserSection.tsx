@@ -1,6 +1,6 @@
 import { Art } from "@/components/feat/Art/Art"
 import { ColumnArt } from "@/components/feat/ColumnArt/ColumnArt"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 
 export const SelectedByUserSection: BaseComponentType = ({ className, ...props }) => {
     return (

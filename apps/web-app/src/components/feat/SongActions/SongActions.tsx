@@ -1,6 +1,6 @@
 'use client'
 import { Button } from "@/components/ui/Button/Button"
-import { BaseComponentProps } from "@/models/component.model"
+import { BaseComponentProps } from "@/models/ui/component.model"
 import { IconHeart, IconHeartFilled, IconShoppingCart } from "@tabler/icons-react"
 import clsx from "clsx"
 import { FC } from "react"
