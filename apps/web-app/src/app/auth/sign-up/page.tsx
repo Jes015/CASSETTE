@@ -1,10 +1,8 @@
-import { Button } from "@/components/ui/Button/Button"
-import { Input } from "@/components/ui/Input/Input"
 import { Link } from "@/components/ui/Link/Link"
 import { Section } from "@/components/ui/Section/Section"
-import { TextField } from "@/components/ui/TextField/TextField"
 import { PageType } from "@/models/routing/page.model"
 import { frontRoutes } from "@/models/routing/routes.model"
+import { SignUpForm } from "./components/SignUpForm"
 
 const SignUpPage: PageType = (props) => {
     return (
@@ -17,25 +15,7 @@ const SignUpPage: PageType = (props) => {
                 type="secondary"
             />
             <Section.Content className="flex flex-col p-1">
-                <form className="w-full flex gap-1 flex-col text-xs">
-                    <TextField as="primary">
-                        <TextField.Label>Username</TextField.Label>
-                        <Input />
-                    </TextField>
-                    <TextField as="primary">
-                        <TextField.Label>Email</TextField.Label>
-                        <Input />
-                    </TextField>
-                    <TextField as="primary">
-                        <TextField.Label>Password</TextField.Label>
-                        <Input />
-                    </TextField>
-                    <TextField as="primary">
-                        <TextField.Label>Repeat password</TextField.Label>
-                        <Input />
-                    </TextField>
-                    <Button className="mt-2">Sign up</Button>
-                </form>
+                <SignUpForm />
                 <div
                     className="flex justify-center w-full text-[0.6rem]"
                 >

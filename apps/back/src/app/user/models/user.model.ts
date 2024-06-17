@@ -1,6 +1,7 @@
 export const userRoles = {
   Singer: 'Singer',
   Producer: 'Producer',
+  Writer: 'Writer',
   Painter: 'Painter',
   BeatMaker: 'Beat maker',
   MixingEngineer: 'Mixing engineer',

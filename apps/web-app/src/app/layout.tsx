@@ -1,11 +1,14 @@
 import { GlobalComponents } from "@/components/feat/GlobalComponents"
 import { Sidebar } from "@/components/feat/Sidebar/Sidebar"
 import { SongPlayer } from "@/components/feat/SongPlayer/SongPlayer"
+import { setUpAxios } from "@/config/axios/axios.setup"
 import clsx from "clsx"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
+
+setUpAxios()
 
 export default function RootLayout({
   children,
