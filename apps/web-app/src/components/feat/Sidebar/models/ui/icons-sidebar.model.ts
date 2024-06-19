@@ -1,0 +1,1 @@
+export const iconsSidebarSize = { width: 19, height: 19 }

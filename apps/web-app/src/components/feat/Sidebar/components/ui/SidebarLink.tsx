@@ -1,5 +1,7 @@
+'use client'
 import { Link, PartialLinkProps } from "@/components/ui/Link/Link"
 import { Tooltip } from "@/components/ui/Tooltip/Tooltip"
+import { useRouting } from "@/hooks/useRouting"
 import { FrontRoute } from "@/models/routing/routes.model"
 import clsx from "clsx"
 import { FC } from "react"
@@ -9,7 +11,14 @@ interface SidebarLink extends PartialLinkProps {
     currentPage?: boolean
 }
 
-export const SidebarLink: FC<SidebarLink> = ({ route, className, currentPage = false, ...props }) => {
+export type SidebarLinkPartial = Partial<SidebarLink>
+export type SidebarLinkPartialType = FC<SidebarLinkPartial>
+
+export const SidebarLink: FC<SidebarLink> = ({ route, className, ...props }) => {
+    const { currentPathname } = useRouting()
+
+    const currentPage = currentPathname.includes(route.path)
+    
     return (
         <Tooltip
             trigger={

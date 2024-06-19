@@ -1,6 +1,6 @@
 import { UUID } from 'crypto'
 
-export interface UserSession {
+export interface SignInUserSession {
     user: User
     token: string
 }

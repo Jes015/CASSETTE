@@ -110,9 +110,8 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                             <TextArea
                                                 variant="transparent"
                                                 className="outline-none text-xs bg-transparent text-text-tertiary w-full h-[48px] font-medium"
-                                            >
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus recusandae modi voluptates nam asperiores adipisci provident ea neque eligendi similique ab architecto, exercitationem libero tenetur enim aperiam, sed unde itaque!
-                                            </TextArea>
+                                                defaultValue='Lorem ipsum'
+                                            />
                                         )
                                         : (
                                             <Paragraph as="quaternary" className="line-clamp-3">

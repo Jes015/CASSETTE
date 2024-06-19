@@ -1,12 +1,18 @@
+'use client'
 import { Button } from "@/components/ui/Button/Button"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { Section } from "@/components/ui/Section/Section"
 import { Title } from "@/components/ui/Title/Title"
+import { useRouting } from "@/hooks/useRouting"
 import { PageType } from "@/models/routing/page.model"
+import { frontRoutes } from "@/models/routing/routes.model"
+import { signOutService } from "@/services/server/auth.service"
 import { SettingsThemeInput } from "./components/settingInputs/SettingsLanguageInput/SettingsLanguageInput"
 import { SettingsLanguageInput } from "./components/settingInputs/SettingsThemeInput/SettingsThemeInput"
 
-const SettingsHomePage: PageType = (props) => {
+const SettingsHomePage: PageType = () => {
+    const { goToAndRefresh } = useRouting()
+
     return (
         <Section
             type="secondary"
@@ -20,6 +26,18 @@ const SettingsHomePage: PageType = (props) => {
             <Section.Content
                 className="w-full flex flex-col items-start px-2 gap-2 pt-1 pb-2"
             >
+                <section>
+                    <header>
+                        <Title>Session</Title>
+                        <Paragraph as="quaternary">Sign out</Paragraph>
+                    </header>
+                    <div className="flex flex-col gap-2 pt-2">
+                        <Button onClick={async () => {
+                            await signOutService()
+                            goToAndRefresh(frontRoutes.static.auth.subRoutes.signIn.path)
+                        }}>Sign out</Button>
+                    </div>
+                </section>
                 <section>
                     <header>
                         <Title>General</Title>

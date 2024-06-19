@@ -10,11 +10,12 @@ const inter = Inter({ subsets: ["latin"] })
 
 setUpAxios()
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode,
 }>) {
+
   return (
     <html lang="en">
       <body className={clsx(inter.className, 'flex h-svh text-sm text-text-primary overflow-x-clip max-w-[1536px] m-auto')}>
