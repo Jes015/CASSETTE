@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/Button/Button"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import { IconDna, IconRadio, IconVideo, IconVinyl } from "@tabler/icons-react"
 import clsx from "clsx"
 import { useLicensesSection } from "./hooks/useLicensesSection"

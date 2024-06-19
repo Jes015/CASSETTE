@@ -1,6 +1,6 @@
 'use client'
 import LinearLoading from "@/components/ui/LinearLoading/LinearLoading"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import clsx from "clsx"
 import { useGlobalLinearLoader } from "./hooks/useGlobalLinearLoader"
 

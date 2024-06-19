@@ -1,4 +1,4 @@
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 
 interface TableRowProps {
     header?: boolean

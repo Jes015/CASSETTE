@@ -9,7 +9,7 @@ import { Section } from "@/components/ui/Section/Section"
 import TextArea from "@/components/ui/TextArea/TextArea"
 import { TextField } from "@/components/ui/TextField/TextField"
 import { Title } from "@/components/ui/Title/Title"
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import { IconCheck, IconEdit, IconMessage2, IconPlus, IconUserPlus, IconX } from "@tabler/icons-react"
 import clsx from "clsx"
 import { useState } from "react"
@@ -110,9 +110,8 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                             <TextArea
                                                 variant="transparent"
                                                 className="outline-none text-xs bg-transparent text-text-tertiary w-full h-[48px] font-medium"
-                                            >
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus recusandae modi voluptates nam asperiores adipisci provident ea neque eligendi similique ab architecto, exercitationem libero tenetur enim aperiam, sed unde itaque!
-                                            </TextArea>
+                                                defaultValue='Lorem ipsum'
+                                            />
                                         )
                                         : (
                                             <Paragraph as="quaternary" className="line-clamp-3">

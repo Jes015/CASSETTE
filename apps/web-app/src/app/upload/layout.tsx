@@ -1,4 +1,4 @@
-import { LayoutType } from "@/models/page.model"
+import { LayoutType } from "@/models/routing/page.model"
 
 const UploadLayout: LayoutType = ({ children }) => {
     return (

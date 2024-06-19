@@ -1,4 +1,4 @@
-import { BaseComponentType } from "@/models/component.model"
+import { BaseComponentType } from "@/models/ui/component.model"
 import clsx from "clsx"
 
 export const TableColumn: BaseComponentType = ({ className, ...props }) => {

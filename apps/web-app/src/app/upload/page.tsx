@@ -1,7 +1,7 @@
 import { Link } from "@/components/ui/Link/Link"
 import { Section } from "@/components/ui/Section/Section"
-import { PageType } from "@/models/page.model"
-import { frontRoutes } from "@/models/routes.model"
+import { PageType } from "@/models/routing/page.model"
+import { frontRoutes } from "@/models/routing/routes.model"
 import { IconDna, IconMusic, IconRectangle, IconVinyl } from "@tabler/icons-react"
 
 

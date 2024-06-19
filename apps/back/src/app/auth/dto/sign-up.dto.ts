@@ -22,7 +22,7 @@ export class SignUpDto {
 
   @IsString()
   @MinLength(4)
-  @MaxLength(20)
+  @MaxLength(40)
   @Matches(/^[a-zA-Z0-9_-]+$/, {
     message: 'The username should not contain symbols or operators.',
   })

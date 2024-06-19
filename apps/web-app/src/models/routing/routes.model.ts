@@ -5,6 +5,24 @@ export interface FrontRoute {
 
 export type FrontRouteArray = FrontRoute[]
 
+const backOrigin = process.env.BACK_URL
+
+export const backRoutes = {
+    static: {
+        auth: {
+            name: 'auth',
+            signIn: {
+                name: 'Sign in',
+                path: `${backOrigin}/api/auth/sign-in`
+            },
+            signUp: {
+                name: 'Sign up',
+                path: `${backOrigin}/api/auth/sign-up`
+            }
+        }
+    }
+}
+
 export const frontRoutes = {
     static: {
         home: {

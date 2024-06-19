@@ -1,5 +1,5 @@
-import { PageType } from "@/models/page.model"
-import { frontRoutes } from "@/models/routes.model"
+import { PageType } from "@/models/routing/page.model"
+import { frontRoutes } from "@/models/routing/routes.model"
 import { ActivitySection } from "./components/ActivitySection"
 import { ArtistInfoSection } from "./components/ArtistInfoSection"
 import { SelectedByUserSection } from "./components/SelectedByUserSection"

@@ -1,5 +1,5 @@
 import { Link, PartialLinkProps } from "@/components/ui/Link/Link"
-import { FrontRoute } from "@/models/routes.model"
+import { FrontRoute } from "@/models/routing/routes.model"
 import clsx from "clsx"
 import { FC } from "react"
 
