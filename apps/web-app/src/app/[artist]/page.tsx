@@ -1,13 +1,17 @@
+import { auth } from "@/auth"
 import { PageType } from "@/models/routing/page.model"
 import { frontRoutes } from "@/models/routing/routes.model"
 import { ActivitySection } from "./components/ActivitySection"
 import { ArtistInfoSection } from "./components/ArtistInfoSection"
 import { SelectedByUserSection } from "./components/SelectedByUserSection"
 
-const ArtistPage: PageType = ({ params }) => {
+const ArtistPage: PageType = async ({ params }) => {
     const artistUsernameParam = params?.[frontRoutes.static.artist.paramName]
 
-    console.log({ artistParam: artistUsernameParam })
+    const session = await auth()
+    
+    const isProfileOwner = session?.user.user.username === artistUsernameParam
+
     return (
         <div
             className="flex items-start gap-4"
@@ -18,7 +22,7 @@ const ArtistPage: PageType = ({ params }) => {
                 <div
                     className="flex flex-col flex-grow justify-start gap-2 overflow-hidden"
                 >
-                    <ArtistInfoSection />
+                    <ArtistInfoSection user={session?.user.user!} {...{ isProfileOwner }} />
                     <SelectedByUserSection />
                     <ActivitySection />
                 </div>

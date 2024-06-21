@@ -9,15 +9,19 @@ import { Section } from "@/components/ui/Section/Section"
 import TextArea from "@/components/ui/TextArea/TextArea"
 import { TextField } from "@/components/ui/TextField/TextField"
 import { Title } from "@/components/ui/Title/Title"
-import { BaseComponentType } from "@/models/ui/component.model"
+import { User } from "@/models/logic/user.model"
+import { BaseComponentProps } from "@/models/ui/component.model"
 import { IconCheck, IconEdit, IconMessage2, IconPlus, IconUserPlus, IconX } from "@tabler/icons-react"
 import clsx from "clsx"
-import { useState } from "react"
+import { FC, useState } from "react"
 
-export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) => {
+interface ArtistInfoSectionProps extends BaseComponentProps {
+    user: User
+    isProfileOwner: boolean
+}
+
+export const ArtistInfoSection: FC<ArtistInfoSectionProps> = ({ className, user, isProfileOwner, ...props }) => {
     const [editMode, setEditMode] = useState(false)
-
-    const isProfileOwner = true
 
     const activateEditMode = editMode && isProfileOwner
 
@@ -53,17 +57,17 @@ export const ArtistInfoSection: BaseComponentType = ({ className, ...props }) =>
                                         ?
                                         (
                                             <TextField className="h-[40px]" as="secondary">
-                                                <Input defaultValue='joyolababy' size="xl" variant="transparent" className="px-1" />
+                                                <Input defaultValue={user.username} size="xl" variant="transparent" className="px-1" />
                                             </TextField>
                                         )
                                         :
                                         (
-                                            <Title as="secondary" className="pl-1">joyolababy</Title>
+                                            <Title as="secondary" className="pl-1">{user.username}</Title>
                                         )
                                 }
                                 <div className="flex mt-1 gap-1 items-start flex-shrink-0">
                                     {
-                                        ['Singer', 'Producer', 'Artist'].map((legend) => (
+                                        user.roles.map((legend) => (
                                             <Badge
                                                 key={legend}
                                                 size="big"
