@@ -12,7 +12,7 @@ export interface User {
   status: UserStatusType;
   emailVerified: boolean;
   systemRoles: UserSystemRolesType;
-  roles: UserRolesType;
+  roles: UserRolesArrayType;
 }
 
 export type UserArray = User[];
@@ -33,6 +33,7 @@ export const userRoles = {
 } as const
 
 export type UserRolesType = (typeof userRoles)[keyof typeof userRoles]
+export type UserRolesArrayType = UserRolesType[]
 
 export const userSystemRoles = {
     User: 'User',
