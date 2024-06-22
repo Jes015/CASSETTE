@@ -1,5 +1,5 @@
 import { Link, LinkPartialType } from "@/components/ui/Link/Link"
-import { SubTitle } from "@/components/ui/SubTitle/SubTitle"
+import { Text } from "@/components/ui/Text/Text"
 import { Title } from "@/components/ui/Title/Title"
 import { frontRoutes } from "@/models/routing/routes.model"
 import clsx from "clsx"
@@ -26,7 +26,7 @@ export const ArtForRows: LinkPartialType = ({ className, ...props }) => {
                         <div className="flex gap-[0.1rem] items-center">
                             <Title as='quaternary'>Niaaaaa</Title>
                         </div>
-                        <SubTitle className="pl-[0.1rem]" as="quaternary">joyolababy</SubTitle>
+                        <Text className="pl-[0.1rem]" as="quaternary">joyolababy</Text>
                     </div>
                 </div>
                 <SongActions size="pretty-small" />
