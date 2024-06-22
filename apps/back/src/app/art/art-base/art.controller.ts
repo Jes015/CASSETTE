@@ -9,14 +9,14 @@ import {
   Post,
 } from '@nestjs/common';
 import { UUID } from 'crypto';
-import { Auth } from '../auth/decorators/auth.decorator';
-import { GetUser } from '../auth/decorators/user.decorator';
-import { UserEntity } from '../user/entities/user.entity';
+import { Auth } from '../../auth/decorators/auth.decorator';
+import { GetUser } from '../../auth/decorators/user.decorator';
+import { UserEntity } from '../../user/entities/user.entity';
 import { ArtService } from './art.service';
 import { CreateArtDto } from './dto/create-art.dto';
 import { UpdateArtDto } from './dto/update-art.dto';
 
-@Controller('art')
+@Controller()
 export class ArtController {
   constructor(private readonly artService: ArtService) {}
 

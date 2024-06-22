@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
+import { FeaturedArtEntity } from '../../art-user-featured/entity/FeaturedArt';
 import { ArtTypeType, artType } from '../models/art.model';
 
 @Entity('Art')
@@ -46,6 +47,12 @@ export class ArtEntity {
 
   @ManyToMany(() => UserEntity, (user) => user.artsCollaboration)
   collaborators: UserEntityArray;
+
+  @ManyToMany(
+    () => FeaturedArtEntity,
+    (featuredArtEntity) => featuredArtEntity.featuredArts,
+  )
+  featuredArts: FeaturedArtEntity;
 }
 
 export type ArtEntityPartial = Partial<ArtEntity>;

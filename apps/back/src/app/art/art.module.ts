@@ -1,14 +1,32 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from '../auth/auth.module';
-import { UserModule } from '../user/user.module';
-import { ArtController } from './art.controller';
-import { ArtService } from './art.service';
-import { ArtEntity } from './entities/art.entity';
+import { RouterModule } from '@nestjs/core';
+import { ArtBaseModule } from './art-base/art.module';
+import { ArtUserFeaturedModule } from './art-user-featured/art-user-featured.module';
+import { ArtUserModule } from './art-user/art-user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ArtEntity]), AuthModule, UserModule],
-  controllers: [ArtController],
-  providers: [ArtService],
+  imports: [
+    ArtUserModule,
+    ArtBaseModule,
+    ArtUserFeaturedModule,
+    RouterModule.register([
+      {
+        path: 'art',
+        module: ArtBaseModule,
+        children: [
+          {
+            path: 'user',
+            module: ArtUserModule,
+            children: [
+              {
+                path: 'featured',
+                module: ArtUserFeaturedModule,
+              },
+            ],
+          },
+        ],
+      },
+    ]),
+  ],
 })
 export class ArtModule {}

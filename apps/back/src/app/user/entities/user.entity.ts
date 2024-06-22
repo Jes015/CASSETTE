@@ -1,11 +1,16 @@
 import { UUID } from 'crypto';
-import { ArtEntity, ArtEntityArray } from 'src/app/art/entities/art.entity';
+import {
+  ArtEntity,
+  ArtEntityArray,
+} from 'src/app/art/art-base/entities/art.entity';
+import { FeaturedArtEntity } from 'src/app/art/art-user-featured/entity/FeaturedArt';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import {
@@ -67,6 +72,9 @@ export class UserEntity {
   @ManyToMany(() => ArtEntity, (art) => art.collaborators)
   @JoinTable()
   artsCollaboration: ArtEntityArray;
+
+  @OneToOne(() => FeaturedArtEntity, (featuredArt) => featuredArt.user)
+  featuredArt: FeaturedArtEntity;
 }
 
 export type UserEntityArray = UserEntity[];
