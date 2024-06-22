@@ -7,7 +7,7 @@ export const setUpInterceptors = async () => {
     axios.interceptors.request.use(
         async (request: InternalAxiosRequestConfig) => {
             const session = await auth()
-            request.headers.Authorization = `Bearer ${session?.token}`
+            request.headers.Authorization = `Bearer ${session?.user.token}`
 
             return request
         },

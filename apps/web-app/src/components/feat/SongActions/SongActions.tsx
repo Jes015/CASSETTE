@@ -7,10 +7,10 @@ import { FC } from "react"
 
 interface SongActionsProps extends BaseComponentProps {
     size: 'small' | 'big' | 'pretty-small'
+    isProfileOwner: boolean
 }
 
-export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', ...props }) => {
-    const isTheUserOwner = false
+export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', isProfileOwner, ...props }) => {
     const isLiked = true
 
     const handleOnClickAction = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -42,7 +42,7 @@ export const SongActions: FC<SongActionsProps> = ({ className, size = 'small', .
                 {isLiked ? <IconHeartFilled className="text-[#ff5c5c]" width={iconsWidth} height={iconsWidth} /> : <IconHeart width={iconsWidth} height={iconsWidth} />}
             </Button>
             {
-                !isTheUserOwner && (
+                !isProfileOwner && (
                     <Button
                         onClick={handleOnClickAction}
                     >

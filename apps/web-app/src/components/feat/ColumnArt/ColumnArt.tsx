@@ -7,6 +7,10 @@ interface ColumnArtProps extends PartialSectionProps {
     headerProps: PartialSectionHeaderProps
 }
 
+export type ColumnArtPropsPartial = Partial<ColumnArtProps>
+
+export type ColumnArtTypePartial = FC<ColumnArtPropsPartial>
+
 export const ColumnArt: FC<ColumnArtProps> = ({ className, headerProps, children, ...props }) => {
     return (
         <Section

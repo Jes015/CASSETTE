@@ -2,6 +2,7 @@ import { BaseComponentProps } from "@/models/ui/component.model"
 import clsx from "clsx"
 import { FC } from "react"
 import { Sheet } from "../../Sheet"
+import { Text } from "../../Text/Text"
 import { Title } from "../../Title/Title"
 
 interface SectionHeaderProps extends BaseComponentProps {
@@ -39,7 +40,7 @@ export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type
                 as="header"
                 className={
                     clsx(
-                        "!bg-bg-primary !justify-between !items-center",
+                        "!bg-bg-primary !justify-between !items-center max-h-[36px]",
                         className
                     )
                 }
@@ -48,14 +49,14 @@ export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type
                 {...props}
             >
                 <div
-                    className="flex items-center gap-1 font-medium"
+                    className="flex items-stretch gap-1 font-medium"
                 >
                     <span
                         className="font-semibold"
                     >
                         {title}
                     </span>
-                    <span className="self-center pt-[0.24rem] text-zinc-500 text-[0.62rem] leading-3">{description}</span>
+                    <Text as="quaternary" className="self-center pt-[0.24rem]">{description}</Text>
                 </div>
                 {rightNode}
             </Sheet>

@@ -1,7 +1,7 @@
 import { UUID } from 'crypto'
 import { User, UserArray } from './user.model'
 
-export interface Art {
+export interface ArtEntity {
     id: UUID
     title: string
     description: string
@@ -14,9 +14,9 @@ export interface Art {
     collaborators: UserArray
 }
 
-export type ArtEntityPartial = Partial<Art>
+export type ArtEntityPartial = Partial<ArtEntity>
 
-export type ArtEntityArray = Art[]
+export type ArtEntityArray = ArtEntity[]
 
 export const artType = {
     beat: 'Beat',

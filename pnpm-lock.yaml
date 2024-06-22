@@ -148,6 +148,9 @@ importers:
       '@formkit/auto-animate':
         specifier: ^0.8.2
         version: 0.8.2
+      '@formkit/drag-and-drop':
+        specifier: ^0.1.4
+        version: 0.1.4
       '@hookform/resolvers':
         specifier: ^3.6.0
         version: 3.6.0(react-hook-form@7.51.5(react@18.2.0))
@@ -548,6 +551,9 @@ packages:
 
   '@formkit/auto-animate@0.8.2':
     resolution: {integrity: sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==}
+
+  '@formkit/drag-and-drop@0.1.4':
+    resolution: {integrity: sha512-2/T0XC8UsDU7dNZ+dPEWP8tuOVpmzlA8JiXqxJ5SewAOSlh34fpcVuJPBP9Vy680jF/nbnc7QkBMoCJUHRbsKA==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -5182,6 +5188,8 @@ snapshots:
   '@floating-ui/utils@0.2.1': {}
 
   '@formkit/auto-animate@0.8.2': {}
+
+  '@formkit/drag-and-drop@0.1.4': {}
 
   '@hapi/hoek@9.3.0': {}
 
