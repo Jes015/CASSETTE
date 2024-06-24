@@ -1,8 +1,12 @@
 import { Art } from '@/components/feat/Art/Art'
 import { ColumnArt } from '@/components/feat/ColumnArt/ColumnArt'
-import { PartialSectionType } from '@/components/ui/Section/Section'
+import { ArtEntityArray } from '@/models/logic/art.model'
+import { FC } from 'react'
 
-export const ActivitySection: PartialSectionType = ({ className, ...props }) => {
+interface ActivitySectionProps {
+    userArts: ArtEntityArray
+}
+export const ActivitySection: FC<ActivitySectionProps> = ({ userArts }) => {
     return (
         <ColumnArt
             headerProps={{
@@ -12,13 +16,11 @@ export const ActivitySection: PartialSectionType = ({ className, ...props }) => 
             }}
             
         >
-            <Art type='column' />
-            <Art type='column' />
-            <Art type='column' />
-            <Art type='column' />
-            <Art type='column' />
-            <Art type='column' />
-            <Art type='column' />
+            {
+                userArts.map((art) => (
+                    <Art key={art.id} data={art} type='column' />
+                ))
+            }
         </ColumnArt>
     )
 }

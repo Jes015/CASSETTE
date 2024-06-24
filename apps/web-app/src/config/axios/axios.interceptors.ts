@@ -1,7 +1,8 @@
 'use server'
-import { auth, signOut } from '@/auth'
+import { auth } from '@/auth'
 import { frontRoutes } from '@/models/routing/routes.model'
 import axios, { isAxiosError, type InternalAxiosRequestConfig } from 'axios'
+import { redirect } from 'next/navigation'
 
 export const setUpInterceptors = async () => {
     axios.interceptors.request.use(
@@ -19,7 +20,7 @@ export const setUpInterceptors = async () => {
         async (responseError) => {
             if (isAxiosError(responseError)) {
                 if (responseError.response?.data.statusCode === 401 || responseError.response?.status === 401) {
-                    await signOut({ redirectTo: frontRoutes.static.home.path, redirect: true })
+                    redirect(frontRoutes.static.auth.subRoutes.signOut.path)
                 }
             }
             return await Promise.reject(responseError)

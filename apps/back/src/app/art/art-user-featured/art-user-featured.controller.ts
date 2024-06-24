@@ -20,7 +20,6 @@ export class ArtUserFeaturedController {
   constructor(private readonly artService: ArtUserFeaturedService) {}
 
   @Get(':userId')
-  @Auth()
   async getUserFeaturedArts(@Param('userId', ParseUUIDPipe) userId: UUID) {
     return await this.artService.getUserFeaturedArts(userId);
   }

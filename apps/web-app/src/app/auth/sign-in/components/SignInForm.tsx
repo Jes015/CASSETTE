@@ -39,7 +39,7 @@ export const SignInForm: BaseComponentType = () => {
             setMessage(response.message)
 
             if (response.statusCode === 201) {
-                goToAndRefresh(frontRoutes.static.home.path)
+                location.href = frontRoutes.static.home.path
             } else {
                 globalLoaderService.sendMessage({ detail: false })
             }

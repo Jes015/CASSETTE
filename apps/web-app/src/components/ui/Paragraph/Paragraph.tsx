@@ -14,7 +14,7 @@ export const Paragraph: FC<ParagraphProps> = ({ className, as = 'secondary', ...
                 clsx(
                     'select-text text-pretty',
                     as === 'secondary' && 'text-base',
-                    as === 'tertiary' && 'text-sm text-text-secondary',
+                    as === 'tertiary' && 'text-sm text-text-secondary font-medium',
                     as === 'quaternary' && 'text-xs text-text-tertiary font-medium',
                     className
                 )

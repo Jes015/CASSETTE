@@ -2,7 +2,7 @@
 import { Art } from "@/components/feat/Art/Art"
 import { ColumnArt } from "@/components/feat/ColumnArt/ColumnArt"
 import { Text } from "@/components/ui/Text/Text"
-import { ArtEntityArray } from "@/models/logic/art.model"
+import { FeaturedArt } from "@/models/logic/art.model"
 import { BaseComponentProps } from "@/models/ui/component.model"
 import { IconPlus } from "@tabler/icons-react"
 import clsx from "clsx"
@@ -10,12 +10,12 @@ import { FC } from "react"
 import { useFeaturedSection } from "./hooks/useFeaturedSection"
 
 interface FeaturedArtSectionProps extends BaseComponentProps {
-    defaultArts: ArtEntityArray
+    featuredArtList: FeaturedArt
     isProfileOwner: boolean
 }
 
-export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner, defaultArts, className, ...props }) => {
-    const { artsDragAndDrop, artsListDragAndDropRef } = useFeaturedSection({ defaultArts, isProfileOwner })
+export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner, featuredArtList, className, ...props }) => {
+    const { artsDragAndDrop, artsListDragAndDropRef } = useFeaturedSection({ defaultArts: featuredArtList.featuredArts, isProfileOwner })
 
     return (
         <ColumnArt
@@ -26,7 +26,7 @@ export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner
                 className: '!border-b-0',
                 rightNode: isProfileOwner && (
                     <div className="flex items-center gap-2">
-                        <Text as="quaternary"><span className="text-zinc-400">{defaultArts.length}/4</span> Arts selected</Text>
+                        <Text as="quaternary"><span className="text-zinc-400">{featuredArtList.featuredArts.length}/4</span> Arts selected</Text>
                     </div>
                 )
             }}
@@ -52,7 +52,7 @@ export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner
                 </ul>
             </div>
             {
-                (isProfileOwner && defaultArts.length <= 3) && (
+                (isProfileOwner && featuredArtList.featuredArts.length <= 3) && (
                     <button
                         className={
                             clsx(

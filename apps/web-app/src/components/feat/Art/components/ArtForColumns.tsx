@@ -11,10 +11,10 @@ import { SongActions } from "../../SongActions/SongActions"
 
 interface ArtForColumns extends BaseComponentProps {
     data: ArtEntity
-    isProfileOwner: boolean
+    isProfileOwner?: boolean
 }
 
-export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwner, ...props }) => {
+export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwner = false, ...props }) => {
 
     return (
         <Link

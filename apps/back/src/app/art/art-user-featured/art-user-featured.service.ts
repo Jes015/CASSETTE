@@ -29,6 +29,12 @@ export class ArtUserFeaturedService {
       relations: ['featuredArts'],
     });
 
+    if (featuredArtFound == null) {
+      throw new NotFoundException(
+        `User with id ${userId} does not have featured arts`,
+      );
+    }
+
     return featuredArtFound;
   }
 

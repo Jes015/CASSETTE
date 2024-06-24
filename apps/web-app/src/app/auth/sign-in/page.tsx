@@ -6,13 +6,9 @@ import { SignInForm } from "./components/SignInForm"
 
 const SignInPage: PageType = (props) => {
     return (
-        <Section
-            type="secondary"
-            className="!gap-0 w-[300px]"
-        >
+        <Section className="!gap-0 w-[300px]">
             <Section.Header
                 title="Sign in"
-                type="secondary"
             />
             <Section.Content className="flex flex-col p-1">
                 <SignInForm />

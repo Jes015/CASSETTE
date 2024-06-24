@@ -16,7 +16,7 @@ export type PartialSectionHeaderProps = Partial<SectionHeaderProps>
 
 export type PartialSectionHeaderType = FC<SectionHeaderProps>
 
-export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type, className, rightNode, ...props }) => {
+export const SectionHeader: FC<SectionHeaderProps> = ({ title, description, type = 'secondary', className, rightNode, ...props }) => {
     if (type === 'main') {
         return (
             <header

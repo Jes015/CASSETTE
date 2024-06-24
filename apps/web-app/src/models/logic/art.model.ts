@@ -1,6 +1,11 @@
 import { UUID } from 'crypto'
 import { User, UserArray } from './user.model'
 
+export interface FeaturedArt {
+    id: UUID | null
+    featuredArts: ArtEntityArray
+}
+
 export interface ArtEntity {
     id: UUID
     title: string

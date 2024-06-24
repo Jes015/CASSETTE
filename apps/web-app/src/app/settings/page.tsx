@@ -14,13 +14,9 @@ const SettingsHomePage: PageType = () => {
     const { goToAndRefresh } = useRouting()
 
     return (
-        <Section
-            type="secondary"
-            className="gap-0 flex-grow"
-        >
+        <Section className="gap-0 flex-grow">
             <Section.Header
                 title="Home"
-                type="secondary"
                 description="Basic settings of the UI"
             />
             <Section.Content
