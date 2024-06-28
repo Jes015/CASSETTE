@@ -12,12 +12,16 @@ import { SongActions } from "../../SongActions/SongActions"
 interface ArtForColumns extends BaseComponentProps {
     data: ArtEntity
     isProfileOwner?: boolean
+    displayButtons?: boolean
+    as?: 'article' | 'Link'
 }
 
-export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwner = false, ...props }) => {
-
+export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwner = false, displayButtons = true, as = 'Link', ...props }) => {
+    const Component =  as === 'article' ? 'article' : Link
+    
     return (
-        <Link
+        // @ts-expect-error
+        <Component
             href={frontRoutes.dynamics.art({ artistName: data?.owner?.username, artName: data?.title })}
             className={
                 clsx(
@@ -25,6 +29,7 @@ export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwn
                     className
                 )
             }
+            {...props}
         >
             <PlaySongButton />
             <div className="flex flex-col justify-center gap-2 flex-grow">
@@ -39,7 +44,11 @@ export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwn
                     </div>
                 </div>
             </div>
-            <SongActions {...{ isProfileOwner }} size="small" />
-        </Link>
+            {
+                displayButtons && (
+                    <SongActions {...{ isProfileOwner }} size="small" />
+                )
+            }
+        </Component>
     )
 }

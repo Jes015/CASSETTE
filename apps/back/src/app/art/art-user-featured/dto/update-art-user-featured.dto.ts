@@ -1,9 +1,21 @@
-import { IsObject } from 'class-validator';
-import { ArtEntityArray } from '../../art-base/entities/art.entity';
+import { Type } from 'class-transformer';
+import { IsNumber, IsUUID, ValidateNested } from 'class-validator';
+import { UUID } from 'crypto';
+
+class UpdateArtDto {
+  @IsUUID()
+  artId: UUID;
+
+  @IsNumber()
+  newOrderLArt: number;
+}
 
 export class UpdateArtUserFeaturedDto {
-  @IsObject({
-    each: true,
-  })
-  newArtArray: ArtEntityArray;
+  @ValidateNested()
+  @Type(() => UpdateArtDto)
+  rightArt: UpdateArtDto;
+
+  @ValidateNested()
+  @Type(() => UpdateArtDto)
+  leftArt: UpdateArtDto;
 }

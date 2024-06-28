@@ -10,8 +10,11 @@ import { ActivitySection } from "./components/ActivitySection"
 import { ArtistInfoSection } from "./components/ArtistInfoSection"
 import { FeaturedArtSection } from "./components/FeaturedArtSection/FeaturedArtSection"
 
+export const revalidate = 0
+
 const ArtistPage: PageType = async ({ params }) => {
     await checkSession()
+
     const artistUsernameParam = params?.[frontRoutes.static.artist.paramName]
     const session = await auth()
     const isProfileOwner = session?.user.user.username === artistUsernameParam
@@ -37,7 +40,11 @@ const ArtistPage: PageType = async ({ params }) => {
                     className="flex flex-col flex-grow justify-start gap-2 overflow-hidden"
                 >
                     <ArtistInfoSection user={userData} {...{ isProfileOwner }} />
-                    <FeaturedArtSection featuredArtList={featuredArts} {...{ isProfileOwner }} />
+                    {
+                        (isProfileOwner || (!isProfileOwner && featuredArts.featuredArts.length > 0)) && (
+                            <FeaturedArtSection userId={userData.id} featuredArtList={featuredArts} userArts={userArts} {...{ isProfileOwner }} />
+                        )
+                    }
                     <ActivitySection userArts={userArts} />
                 </div>
             </div>
