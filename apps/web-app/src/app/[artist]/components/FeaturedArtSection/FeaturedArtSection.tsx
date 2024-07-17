@@ -2,8 +2,10 @@
 import { Art } from "@/components/feat/Art/Art"
 import { ArtFinder } from "@/components/feat/ArtFinder/ArtFinder"
 import { ColumnArt } from "@/components/feat/ColumnArt/ColumnArt"
+import { CircularLoader } from "@/components/ui/CircularLoader/CircularLoader"
+import { ContextMenu } from "@/components/ui/ContextMenu/ContextMenu"
 import { Text } from "@/components/ui/Text/Text"
-import { ArtEntityArray, FeaturedArt } from "@/models/logic/art.model"
+import { ArtEntity, ArtEntityArray, FeaturedArtArray } from "@/models/logic/art.model"
 import { BaseComponentProps } from "@/models/ui/component.model"
 import { IconPlus } from "@tabler/icons-react"
 import clsx from "clsx"
@@ -12,14 +14,22 @@ import { FC } from "react"
 import { useFeaturedSection } from "./hooks/useFeaturedSection"
 
 interface FeaturedArtSectionProps extends BaseComponentProps {
-    featuredArtList: FeaturedArt
+    featuredArtList: FeaturedArtArray
     userArts: ArtEntityArray
     isProfileOwner: boolean
     userId: UUID
 }
 
 export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner, featuredArtList, userArts, className, userId, ...props }) => {
-    const { artsDragAndDrop, artsListDragAndDropRef, loading, addArt } = useFeaturedSection({ featuredArt: featuredArtList, isProfileOwner })
+    const { artsDragAndDrop, artsListDragAndDropRef, addArt, removeArt, loading } = useFeaturedSection({ featuredArtArray: featuredArtList, isProfileOwner })
+
+    const handleOnClickToRemoveArt = (artId: UUID) => () => {
+        removeArt(artId)
+    }
+
+    const handleOnSelectArt = (art: ArtEntity) => {
+        addArt(art)
+    }
 
     return (
         <ColumnArt
@@ -29,9 +39,17 @@ export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner
                 description: 'Selected by the artist',
                 className: '!border-b-0',
                 rightNode: isProfileOwner && (
-                    <div className="flex items-center gap-2">
-                        {loading && 'loading'}
-                        <Text as="quaternary"><span className="text-zinc-400">{artsDragAndDrop.length}/4</span> Arts selected</Text>
+                    <div className="flex items-center">
+                        {
+                            loading && (
+                                <div className="scale-50 mt-[0.1rem] opacity-90">
+                                    <CircularLoader />
+                                </div>
+                            )
+                        }
+                        <div className="flex items-center gap-2">
+                            <Text as="quaternary"><span className="text-zinc-400">{artsDragAndDrop.length}/4</span> Arts selected</Text>
+                        </div>
                     </div>
                 )
             }}
@@ -42,27 +60,42 @@ export const FeaturedArtSection: FC<FeaturedArtSectionProps> = ({ isProfileOwner
                 <ul ref={artsListDragAndDropRef}>
                     {
                         artsDragAndDrop.map((art) => (
-                            <li key={art.id} className="kanban-item flex items-center">
-                                <Art data={art} type="column" {...{ isProfileOwner }}
-                                    className={
-                                        clsx(
-                                            "w-full",
-                                            isProfileOwner && 'hover:cursor-move !cursor-move selection:!cursor-move'
-                                        )
+                            <li
+                                key={art.id ?? art.featuredArt.id}
+                                className={
+                                    clsx(
+                                        "kanban-item flex items-center",
+                                        loading && 'opacity-50 animate-pulse'
+                                    )
+                                }
+                            >
+                                <ContextMenu
+                                    className="w-full"
+                                    trigger={
+                                        <Art data={art.featuredArt} type="column" {...{ isProfileOwner }}
+                                            className={
+                                                clsx(
+                                                    "w-full",
+                                                    isProfileOwner && 'hover:cursor-move !cursor-move selection:!cursor-move'
+                                                )
+                                            }
+                                        />
                                     }
-                                />
+                                >
+                                    <ContextMenu.Item onClick={handleOnClickToRemoveArt(art.id!)}>Remove</ContextMenu.Item>
+                                </ContextMenu>
                             </li>
                         ))
                     }
                 </ul>
             </div>
             {
-                (isProfileOwner && featuredArtList.featuredArts.length <= 3) && (
+                (isProfileOwner && artsDragAndDrop.length <= 3) && (
                     <ArtFinder
                         userArts={userArts}
-                        onSelectArt={(art) => { addArt(art) }}
+                        onSelectArt={handleOnSelectArt}
                         userId={userId}
-                        artsToNotShow={featuredArtList.featuredArts}
+                        artsToNotShow={artsDragAndDrop.map(featuredArt => featuredArt.featuredArt)}
                         trigger={
                             <button
                                 className={

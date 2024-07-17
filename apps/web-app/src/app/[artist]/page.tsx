@@ -1,16 +1,29 @@
 import { auth } from "@/auth"
-import { ArtEntityArray, FeaturedArt } from "@/models/logic/art.model"
+import { ArtEntityArray, FeaturedArtArray } from "@/models/logic/art.model"
 import { User } from "@/models/logic/user.model"
-import { PageType } from "@/models/routing/page.model"
+import { PageProps, PageType } from "@/models/routing/page.model"
 import { frontRoutes } from "@/models/routing/routes.model"
 import { getFeaturedUserArts, getUserArts } from "@/services/server/art.service"
 import { checkSession } from "@/services/server/auth.service"
 import { getUserData } from "@/services/server/user.service"
+import { Metadata, ResolvingMetadata } from "next"
 import { ActivitySection } from "./components/ActivitySection"
 import { ArtistInfoSection } from "./components/ArtistInfoSection"
 import { FeaturedArtSection } from "./components/FeaturedArtSection/FeaturedArtSection"
 
 export const revalidate = 0
+
+export async function generateMetadata(
+    { params, searchParams }: PageProps,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+
+    const artistUsernameParam = params?.[frontRoutes.static.artist.paramName]
+
+    return {
+        title: artistUsernameParam
+    }
+}
 
 const ArtistPage: PageType = async ({ params }) => {
     await checkSession()
@@ -25,7 +38,7 @@ const ArtistPage: PageType = async ({ params }) => {
         return 'User not found'
     }
 
-    const featuredArts: FeaturedArt = await getFeaturedUserArts(userData.id)
+    const featuredArts: FeaturedArtArray = await getFeaturedUserArts(userData.id)
 
     const userArts: ArtEntityArray = await getUserArts(userData.id)
 
@@ -41,7 +54,7 @@ const ArtistPage: PageType = async ({ params }) => {
                 >
                     <ArtistInfoSection user={userData} {...{ isProfileOwner }} />
                     {
-                        (isProfileOwner || (!isProfileOwner && featuredArts.featuredArts.length > 0)) && (
+                        (isProfileOwner || (!isProfileOwner && featuredArts.length > 0)) && (
                             <FeaturedArtSection userId={userData.id} featuredArtList={featuredArts} userArts={userArts} {...{ isProfileOwner }} />
                         )
                     }

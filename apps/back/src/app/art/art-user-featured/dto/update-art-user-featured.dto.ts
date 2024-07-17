@@ -1,21 +1,10 @@
-import { Type } from 'class-transformer';
-import { IsNumber, IsUUID, ValidateNested } from 'class-validator';
+import { IsNumber, IsUUID } from 'class-validator';
 import { UUID } from 'crypto';
 
-class UpdateArtDto {
+export class UpdateArtUserFeaturedDto {
   @IsUUID()
   artId: UUID;
 
   @IsNumber()
-  newOrderLArt: number;
-}
-
-export class UpdateArtUserFeaturedDto {
-  @ValidateNested()
-  @Type(() => UpdateArtDto)
-  rightArt: UpdateArtDto;
-
-  @ValidateNested()
-  @Type(() => UpdateArtDto)
-  leftArt: UpdateArtDto;
+  newOrderArt: number;
 }

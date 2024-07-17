@@ -7,7 +7,11 @@ import { backRoutes, frontRoutes } from "@/models/routing/routes.model"
 import axios from "axios"
 
 export const checkSession = async () => {
-    await axios.get(backRoutes.static.auth.subRoutes.sessionCheckPoint.path)
+    try {
+        await axios.get(backRoutes.static.auth.subRoutes.sessionCheckPoint.path)
+    } catch {
+        signOut()
+    }
 }
 
 // AUTH.JS V5 SUCKSSSSS FOREVEEEER

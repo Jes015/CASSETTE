@@ -62,8 +62,8 @@ export const backRoutes = {
                         return getBackUrl('art/user') + '/' + userId
                     },
                     subRoutes: {
-                        featured(userId: UUID) {
-                            return getBackUrl('art/user/featured') + '/' + userId
+                        featured(userOrArtId: UUID) {
+                            return getBackUrl('art/user/featured') + '/' + userOrArtId
                         }
                     }
                 }

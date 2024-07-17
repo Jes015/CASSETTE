@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -28,7 +27,12 @@ export class ArtUserFeaturedService {
           id: userId,
         },
       },
-      relations: ['featuredArt'],
+      relations: {
+        featuredArt: {
+          owner: true,
+          collaborators: true,
+        },
+      },
       order: {
         order: 'ASC',
       },
@@ -37,7 +41,7 @@ export class ArtUserFeaturedService {
     return artsFound;
   }
 
-  async addFeaturedArt(artId: UUID, userId: UUID) {
+  async addFeaturedArt(artId: UUID, userId: UUID): Promise<FeaturedArtEntity> {
     const artsFound = await this.getFeaturedArts(userId);
 
     const artsLimitLength = 4;
@@ -63,7 +67,7 @@ export class ArtUserFeaturedService {
 
     nextOrderValue = Number(lowerOrderValue) + 1;
 
-    return await createAndSaveEntry(this.artFeaturedRepository, {
+    const artSaved = await createAndSaveEntry(this.artFeaturedRepository, {
       featuredArt: {
         id: artId,
       },
@@ -72,51 +76,44 @@ export class ArtUserFeaturedService {
       },
       order: nextOrderValue,
     });
+
+    const artFound = await this.artRepository.findOne({
+      where: {
+        id: artId,
+      },
+      relations: ['owner', 'collaborators'],
+    });
+
+    return { ...artSaved, featuredArt: artFound };
   }
 
-  async deleteFeaturedArt(artId: UUID, userId: UUID) {
+  async deleteFeaturedArt(featuredArtId: UUID, userId: UUID) {
     const { affected } = await this.artFeaturedRepository.delete({
-      id: artId,
+      id: featuredArtId,
       user: {
         id: userId,
       },
     });
 
     if (affected === 0) {
-      throw new NotFoundException(`Art with id ${artId} not found`);
+      throw new NotFoundException(`Art with id ${featuredArtId} not found`);
     }
 
-    return `Art Featured with id ${artId} deleted`;
+    return `Art Featured with id ${featuredArtId} deleted`;
   }
 
   async updateFeaturedArts(
-    { leftArt, rightArt }: UpdateArtUserFeaturedDto,
+    { artId, newOrderArt }: UpdateArtUserFeaturedDto,
     userId: UUID,
   ) {
-    // Check that the new order of the arts is not the same
-    if (leftArt.newOrderLArt === rightArt.newOrderLArt) {
-      throw new BadRequestException(
-        "Bad featured arts order. It's the same number in the both sides.",
-      );
-    }
-
-    const artIds = [leftArt.artId, rightArt.artId];
-
-    // Verify that the arts exits
-    await Promise.all(
-      artIds.map(async (artId) => {
-        await this.verifyArtExistsAndUserOwnerOrCollaborator(artId, userId);
-      }),
-    );
+    await this.verifyArtExistsAndUserOwnerOrCollaborator(artId, userId);
 
     // Verify that the featured arts exits
-    const rightArtFound = await this.verifyFeaturedArt(userId, rightArt.artId);
-    const leftArtFound = await this.verifyFeaturedArt(userId, leftArt.artId);
+    const artFound = await this.verifyFeaturedArt(userId, artId);
 
-    rightArtFound.order = rightArt.newOrderLArt;
-    leftArtFound.order = leftArt.newOrderLArt;
+    artFound.order = newOrderArt;
 
-    return await this.artFeaturedRepository.save([rightArtFound, leftArtFound]);
+    return await this.artFeaturedRepository.save(artFound);
   }
 
   private async verifyArtExistsAndUserOwnerOrCollaborator(
