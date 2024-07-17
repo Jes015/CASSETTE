@@ -5,6 +5,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
@@ -48,9 +49,9 @@ export class ArtEntity {
   @ManyToMany(() => UserEntity, (user) => user.artsCollaboration)
   collaborators: UserEntityArray;
 
-  @ManyToMany(
+  @OneToMany(
     () => FeaturedArtEntity,
-    (featuredArtEntity) => featuredArtEntity.featuredArts,
+    (featuredArtEntity) => featuredArtEntity.featuredArt,
   )
   featuredArts: FeaturedArtEntity;
 }

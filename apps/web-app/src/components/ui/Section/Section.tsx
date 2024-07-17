@@ -13,7 +13,7 @@ export type PartialSectionProps = Partial<SectionProps>
 
 export type PartialSectionType = FC<PartialSectionProps>
 
-export const Section = ({ type = 'main', className, ...props }: SectionProps) => {
+export const Section = ({ type = 'secondary', className, ...props }: SectionProps) => {
     return (
         <Sheet
             className={

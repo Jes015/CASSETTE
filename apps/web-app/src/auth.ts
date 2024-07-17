@@ -33,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         password: String(credentials.password)
                     }
 
-                    const response = await axios.post<SignInUserSession>(backRoutes.static.auth.signIn.path, authData)
+                    const response = await axios.post<SignInUserSession>(backRoutes.static.auth.subRoutes.signIn.path, authData)
 
                     if (response.data) {
                         user = response.data

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/Button/Button"
 import { Input } from "@/components/ui/Input/Input"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { TextField } from "@/components/ui/TextField/TextField"
-import { useRouting } from "@/hooks/useRouting"
 import { frontRoutes } from "@/models/routing/routes.model"
 import { BaseComponentType } from "@/models/ui/component.model"
 import { globalLoaderService } from "@/services/client/CustomEvents/global-loader.client-service-custom-events"
@@ -23,7 +22,6 @@ const signInSchema = z.object({
 export type SignInSchema = z.infer<typeof signInSchema>
 
 export const SignInForm: BaseComponentType = () => {
-    const { goToAndRefresh } = useRouting()
     const [message, setMessage] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
 
@@ -39,7 +37,7 @@ export const SignInForm: BaseComponentType = () => {
             setMessage(response.message)
 
             if (response.statusCode === 201) {
-                goToAndRefresh(frontRoutes.static.home.path)
+                location.href = frontRoutes.static.home.path
             } else {
                 globalLoaderService.sendMessage({ detail: false })
             }

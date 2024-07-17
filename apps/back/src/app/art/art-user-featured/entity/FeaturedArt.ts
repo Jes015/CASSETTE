@@ -1,25 +1,30 @@
 import { UUID } from 'crypto';
 import { UserEntity } from 'src/app/user/entities/user.entity';
 import {
+  Column,
   Entity,
-  JoinColumn,
-  JoinTable,
-  ManyToMany,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
+  Unique,
 } from 'typeorm';
-import { ArtEntity, ArtEntityArray } from '../../art-base/entities/art.entity';
+import { ArtEntity } from '../../art-base/entities/art.entity';
 
 @Entity('featured-art')
+@Unique(['user', 'featuredArt'])
 export class FeaturedArtEntity {
   @PrimaryGeneratedColumn('uuid')
   id: UUID;
 
-  @OneToOne(() => UserEntity, (userEntity) => userEntity.featuredArt)
-  @JoinColumn()
+  @ManyToOne(() => UserEntity, (userEntity) => userEntity.featuredArt)
   user: UserEntity;
 
-  @ManyToMany(() => ArtEntity, (artEntity) => artEntity.featuredArts)
-  @JoinTable()
-  featuredArts: ArtEntityArray;
+  @Column('numeric', {
+    nullable: false,
+  })
+  order: number;
+
+  @ManyToOne(() => ArtEntity, (artEntity) => artEntity.featuredArts)
+  featuredArt: ArtEntity;
 }
+
+export type FeaturedArtEntityArray = FeaturedArtEntity[];

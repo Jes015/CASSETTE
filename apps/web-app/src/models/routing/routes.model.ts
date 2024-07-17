@@ -1,3 +1,5 @@
+import { UUID } from "crypto"
+
 export interface FrontRoute {
     name: string
     path: string
@@ -6,18 +8,65 @@ export interface FrontRoute {
 export type FrontRouteArray = FrontRoute[]
 
 const backOrigin = process.env.BACK_URL
+const prefix = '/api/'
+
+const getBackUrl = (route: string) => {
+    return backOrigin + prefix + route
+}
 
 export const backRoutes = {
     static: {
         auth: {
             name: 'auth',
-            signIn: {
-                name: 'Sign in',
-                path: `${backOrigin}/api/auth/sign-in`
-            },
-            signUp: {
-                name: 'Sign up',
-                path: `${backOrigin}/api/auth/sign-up`
+            subRoutes: {
+                sessionCheckPoint: {
+                    name: 'Session check point',
+                    path: getBackUrl('auth/session-check-point')
+                },
+                signIn: {
+                    name: 'Sign in',
+                    path: getBackUrl('auth/sign-in')
+                },
+                signUp: {
+                    name: 'Sign up',
+                    path: getBackUrl('auth/sign-up')
+                }
+            }
+        },
+        art: {
+            name: 'art',
+            path: getBackUrl('art'),
+            subRoutes: {
+                user: {
+                    name: 'User arts',
+                    path: getBackUrl('art/user'),
+                    subRoutes: {
+                        featured: {
+                            name: 'featured',
+                            path: getBackUrl('art/user/featured')
+                        }
+                    }
+                }
+            }
+        }
+    },
+    dynamic: {
+        user(userName: string) {
+            return getBackUrl('user') + '/' + userName
+        }
+        ,
+        art: {
+            subRoutes: {
+                user: {
+                    base (userId: UUID) {
+                        return getBackUrl('art/user') + '/' + userId
+                    },
+                    subRoutes: {
+                        featured(userOrArtId: UUID) {
+                            return getBackUrl('art/user/featured') + '/' + userOrArtId
+                        }
+                    }
+                }
             }
         }
     }
@@ -115,6 +164,10 @@ export const frontRoutes = {
                 reportAuth: {
                     name: 'Report auth bug',
                     path: '/auth/report'
+                },
+                signOut: {
+                    name: 'Sign out',
+                    path: '/auth/sign-out'
                 }
             }
         }

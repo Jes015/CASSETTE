@@ -1,9 +1,10 @@
-import { IsObject } from 'class-validator';
-import { ArtEntityArray } from '../../art-base/entities/art.entity';
+import { IsNumber, IsUUID } from 'class-validator';
+import { UUID } from 'crypto';
 
 export class UpdateArtUserFeaturedDto {
-  @IsObject({
-    each: true,
-  })
-  newArtArray: ArtEntityArray;
+  @IsUUID()
+  artId: UUID;
+
+  @IsNumber()
+  newOrderArt: number;
 }

@@ -8,7 +8,9 @@ import { ArtForRows } from "./components/ArtForRows"
 interface ArtProps extends BaseComponentProps{
     type: 'column' | 'row'
     data: ArtEntity
-    isProfileOwner: boolean
+    isProfileOwner?: boolean
+    displayButtons?: boolean
+    as?: 'article' | 'Link'
 }
 
 export const Art: FC<ArtProps> = ({ type, ...props }) => {

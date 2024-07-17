@@ -20,9 +20,8 @@ export class ArtUserFeaturedController {
   constructor(private readonly artService: ArtUserFeaturedService) {}
 
   @Get(':userId')
-  @Auth()
   async getUserFeaturedArts(@Param('userId', ParseUUIDPipe) userId: UUID) {
-    return await this.artService.getUserFeaturedArts(userId);
+    return await this.artService.getFeaturedArts(userId);
   }
 
   @Post()
@@ -31,10 +30,8 @@ export class ArtUserFeaturedController {
     @Body() { artIdToAdd }: AddArtUserFeaturedDto,
     @GetUser('id') userId: UUID,
   ) {
-    return await this.artService.addUserFeaturedArt(artIdToAdd, userId);
+    return await this.artService.addFeaturedArt(artIdToAdd, userId);
   }
-
-  updateUserFeaturedArts() {}
 
   @Delete(':artId')
   @Auth()
@@ -42,20 +39,15 @@ export class ArtUserFeaturedController {
     @Param('artId') artId: UUID,
     @GetUser('id') userId: UUID,
   ) {
-    return await this.artService.deleteUserFeaturedArt(artId, userId);
+    return await this.artService.deleteFeaturedArt(artId, userId);
   }
 
-  @Patch(':artId')
+  @Patch()
   @Auth()
   async updateUserFeaturedArt(
-    @Param('artId') artListFeaturedId: UUID,
     @Body() updateArtDto: UpdateArtUserFeaturedDto,
     @GetUser('id') userId: UUID,
   ) {
-    return await this.artService.updateUserFeaturedArt(
-      artListFeaturedId,
-      updateArtDto,
-      userId,
-    );
+    return await this.artService.updateFeaturedArts(updateArtDto, userId);
   }
 }

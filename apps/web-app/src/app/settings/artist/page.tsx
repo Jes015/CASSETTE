@@ -7,13 +7,9 @@ import clsx from "clsx"
 
 const SettingsArtistPage: PageType = (props) => {
     return (
-        <Section
-            type="secondary"
-            className="gap-0 flex-grow"
-        >
+        <Section className="gap-0 flex-grow">
             <Section.Header
                 title="Artist"
-                type="secondary"
             />
             <Section.Content
                 className="w-full flex flex-col gap-[0.2rem] p-1"

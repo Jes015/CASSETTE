@@ -15,7 +15,7 @@ export class ArtUserService {
     const artsFound = await this.artRepository.find({
       where: { owner: { id: userId } },
       order: { created_at: 'DESC' },
-      relations: ['collaborators'],
+      relations: ['collaborators', 'owner'],
       /* skip: 10,
       take: 10, */
     });

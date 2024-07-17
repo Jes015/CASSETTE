@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Auth } from './decorators/auth.decorator';
 import { SignInDto } from './dto/sign-in.dto';
@@ -22,5 +22,11 @@ export class AuthController {
   @Auth('Admin')
   deleteAll() {
     return this.authService.deleteUsers();
+  }
+
+  @Get('/session-check-point')
+  @Auth()
+  session() {
+    return 'Session ok';
   }
 }

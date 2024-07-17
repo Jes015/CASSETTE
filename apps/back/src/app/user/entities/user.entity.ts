@@ -10,7 +10,6 @@ import {
   JoinTable,
   ManyToMany,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import {
@@ -73,7 +72,7 @@ export class UserEntity {
   @JoinTable()
   artsCollaboration: ArtEntityArray;
 
-  @OneToOne(() => FeaturedArtEntity, (featuredArt) => featuredArt.user)
+  @OneToMany(() => FeaturedArtEntity, (featuredArt) => featuredArt.user)
   featuredArt: FeaturedArtEntity;
 }
 

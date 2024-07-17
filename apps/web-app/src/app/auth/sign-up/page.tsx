@@ -6,14 +6,8 @@ import { SignUpForm } from "./components/SignUpForm"
 
 const SignUpPage: PageType = (props) => {
     return (
-        <Section
-            type="secondary"
-            className="!gap-0 w-[300px]"
-        >
-            <Section.Header
-                title="Sign up"
-                type="secondary"
-            />
+        <Section className="!gap-0 w-[300px]">
+            <Section.Header title="Sign up" />
             <Section.Content className="flex flex-col p-1">
                 <SignUpForm />
                 <div
