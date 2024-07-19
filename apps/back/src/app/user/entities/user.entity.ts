@@ -41,6 +41,22 @@ export class UserEntity {
   })
   password: string;
 
+  @Column('text', {
+    nullable: true,
+  })
+  description: string;
+
+  @Column('text', {
+    array: true,
+    default: [],
+  })
+  socials: string[];
+
+  @Column('text', {
+    default: '/tainy.webp',
+  })
+  avatar: string;
+
   @Column('enum', {
     enum: Object.values(userStatus),
     default: userStatus.Active,
