@@ -1,5 +1,6 @@
 'use client'
-import { PlaySongButton } from "@/components/feat/PlaySongButton/PlaySongButton"
+import { RoundedEditProfileButton } from "@/components/feat/RoundedEditProfileButton/RoundedEditProfileButton"
+import { RoundedPlaySongButton } from "@/components/feat/RoundedPlaySongButton/RoundedPlaySongButton"
 import { Badge } from "@/components/ui/Badge"
 import { Button } from "@/components/ui/Button/Button"
 import { Input } from "@/components/ui/Input/Input"
@@ -43,9 +44,29 @@ export const ArtistInfoSection: FC<ArtistInfoSectionProps> = ({ className, user,
             <Section.Content
                 className="flex flex-col p-2 flex-shrink"
             >
-                <div className="inline-flex flex-grow items-start">
+                <form className="inline-flex flex-grow items-start">
                     <div>
-                        <PlaySongButton className="flex-shrink-0" size="big" />
+                        {
+                            activateEditMode
+                                ?
+                                <RoundedEditProfileButton
+                                    className="flex-shrink-0"
+                                    size="big"
+                                    imageProps={{
+                                        src: '/tainy.webp',
+                                        alt: 'avatar of' + user.username
+                                    }}
+                                />
+                                :
+                                <RoundedPlaySongButton
+                                    className="flex-shrink-0"
+                                    size="big"
+                                    imageProps={{
+                                        src: '/tainy.webp',
+                                        alt: 'avatar of' + user.username
+                                    }}
+                                />
+                        }
                     </div>
                     <div
                         className="flex flex-grow flex-col gap-1"
@@ -171,7 +192,7 @@ export const ArtistInfoSection: FC<ArtistInfoSectionProps> = ({ className, user,
                             <Link className="text-xs" href='/a' variant="link">My web site</Link>
                         </div>
                     </div>
-                </div>
+                </form>
             </Section.Content>
         </Section>
     )

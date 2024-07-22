@@ -1,8 +1,8 @@
 'use client'
-import { PlaySongButton } from "@/components/feat/PlaySongButton/PlaySongButton"
 import { SongActions } from "@/components/feat/SongActions/SongActions"
 import { Badge } from "@/components/ui/Badge"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
+import { PlaySongButton } from "@/components/ui/RoundedButton/PlaySongButton"
 import { PartialSectionType, Section } from "@/components/ui/Section/Section"
 import { Title } from "@/components/ui/Title/Title"
 import { IconPlus } from "@tabler/icons-react"
