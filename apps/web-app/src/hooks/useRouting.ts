@@ -9,6 +9,10 @@ export const useRouting = () => {
         routing.push(path)
     }
 
+    const replace = (path: string) => {
+        routing.replace(path)
+    }
+
     const refresh = () => {
         routing.refresh()
     }
@@ -18,5 +22,5 @@ export const useRouting = () => {
         refresh()
     }
 
-    return { currentPathname, goTo, refresh, goToAndRefresh }
+    return { currentPathname, goTo, refresh, goToAndRefresh, replace }
 }

@@ -14,8 +14,7 @@ declare module 'next-auth' {
     }
 }
 
-// AUTH.JS V5 SUCKSSSSS FOREVEEEER
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update: update } = NextAuth({
     providers: [
         Credentials({
             name: 'email-password',
@@ -50,11 +49,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }),
     ],
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user, trigger, session }) {
             if (user) {
                 token.userSession = user.user
                 token.token = user.token
             }
+
+            // To updated session from server
+            if (trigger === "update" && session) {
+                token.userSession = session.user.user
+            };
+
             return token
         },
         async session({ session, token }) {

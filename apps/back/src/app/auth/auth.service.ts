@@ -26,6 +26,7 @@ export class AuthService {
         email: true,
         emailVerified: true,
         password: true,
+        description: true,
         roles: true,
         status: true,
         systemRoles: true,

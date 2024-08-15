@@ -2,14 +2,13 @@
 import { Modal } from "@/components/ui/Modal/Modal"
 import { RoundedButton, RoundedButtonType } from "@/components/ui/RoundedButton/RoundedButton"
 import { IconEdit } from "@tabler/icons-react"
-import clsx from "clsx"
 import { useState } from "react"
 
-export const RoundedEditProfileButton: RoundedButtonType = ({ onClick, icon, imageProps, ...props }) => {
+export const RoundedEditProfileButton: RoundedButtonType = ({ onClick, icon, ...props }) => {
     const [loading, setLoading] = useState(false)
 
     const handleOnClickToEditArt = () => {
-        setLoading(true)
+        setLoading(prev => !prev)
     }
 
     return (
@@ -18,10 +17,6 @@ export const RoundedEditProfileButton: RoundedButtonType = ({ onClick, icon, ima
                 <RoundedButton
                     onClick={handleOnClickToEditArt}
                     icon={<IconEdit />}
-                    imageProps={{
-                        ...imageProps,
-                        className: clsx(imageProps.className, '')
-                    }}
                     loading={loading}
                     rounded={true}
                     {...props}
@@ -31,8 +26,18 @@ export const RoundedEditProfileButton: RoundedButtonType = ({ onClick, icon, ima
                 title: 'Avatar selector',
                 description: 'Upload a image'
             }}
+            className="!border-b-2"
         >
-            <button type="button" onClick={handleOnClickToEditArt}>Upload</button>
+            <div
+                className="flex flex-col gap-4 p-1"
+            >
+                <button type="button" onClick={handleOnClickToEditArt}>
+                    Upload from your files
+                </button>
+                <button type="button" onClick={handleOnClickToEditArt}>
+                    From url
+                </button>
+            </div>
         </Modal>
     )
 }

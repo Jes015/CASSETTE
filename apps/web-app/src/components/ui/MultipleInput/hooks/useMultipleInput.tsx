@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-export const useMultipleInput = () => {
-  const [values, setValues] = useState<string[]>([])
+export const useMultipleInput = (defaultValues: string[], onAddValue: (data: string[]) => void) => {
+  const [values, setValues] = useState<string[]>(defaultValues)
   const [showInput, setShowInput] = useState(false)
 
   const toggleShowInput = (value?: boolean) => {
@@ -14,7 +14,10 @@ export const useMultipleInput = () => {
 
       if (valueFound != null) return prev
 
-      return [...prev, value]
+      const newValuesValue = [...prev, value]
+      onAddValue(newValuesValue)
+
+      return newValuesValue
     }
     )
   }
@@ -23,6 +26,8 @@ export const useMultipleInput = () => {
     setValues(prev => {
       const valueIndex = prev.findIndex(arrayValue => arrayValue === value)
       const newValueArray = prev.toSpliced(valueIndex, 1)
+
+      onAddValue(newValueArray)
 
       return newValueArray
     })

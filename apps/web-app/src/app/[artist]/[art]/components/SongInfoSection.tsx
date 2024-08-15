@@ -1,8 +1,8 @@
 'use client'
+import { RoundedPlaySongButton } from "@/components/feat/RoundedPlaySongButton/RoundedPlaySongButton"
 import { SongActions } from "@/components/feat/SongActions/SongActions"
 import { Badge } from "@/components/ui/Badge"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
-import { PlaySongButton } from "@/components/ui/RoundedButton/PlaySongButton"
 import { PartialSectionType, Section } from "@/components/ui/Section/Section"
 import { Title } from "@/components/ui/Title/Title"
 import { IconPlus } from "@tabler/icons-react"
@@ -33,7 +33,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
             >
                 <div className="inline-flex flex-grow items-start">
                     <div>
-                        <PlaySongButton className="flex-shrink-0" size="big" />
+                        <RoundedPlaySongButton imageProps={{}} className="flex-shrink-0" size="big" />
                     </div>
                     <div
                         className="flex flex-grow flex-col gap-1"
@@ -70,6 +70,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
                                 </Paragraph>
                             </div>
                             <SongActions
+                                isProfileOwner
                                 size="big"
                             />
                         </div>

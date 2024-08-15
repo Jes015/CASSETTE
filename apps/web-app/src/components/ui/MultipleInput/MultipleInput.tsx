@@ -3,25 +3,22 @@ import { BaseComponentProps } from '@/models/ui/component.model'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { CheckIcon, Cross2Icon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
-import { forwardRef, useEffect, useRef, type ChangeEvent, type DetailedHTMLProps, type InputHTMLAttributes, type LegacyRef } from 'react'
+import { forwardRef, useRef, type ChangeEvent, type DetailedHTMLProps, type InputHTMLAttributes, type LegacyRef } from 'react'
 import { useMultipleInput } from './hooks/useMultipleInput'
 
 export interface MultipleInputProps extends Omit<BaseComponentProps, 'onChange'> {
+    defaultValues: string[]
     inputProps: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+    itemSelectedClassName?: React.HTMLProps<HTMLElement>['className']
     rounded?: 'lg' | 'md'
-    onAddValue?: (data: string[]) => void
+    onAddValue: (data: string[]) => void
 }
 
 export const MultipleInput = forwardRef<HTMLDivElement, MultipleInputProps>(
-    ({ className, rounded = 'md', onAddValue, inputProps: { className: inputClassName, placeholder: inputPlaceholder, ...inputProps }, ...props }, ref) => {
-        const { showInput, toggleShowInput, addValue, removeValue, values } = useMultipleInput()
+    ({ className, defaultValues, rounded = 'md', onAddValue, itemSelectedClassName, inputProps: { className: inputClassName, placeholder: inputPlaceholder, ...inputProps }, ...props }, ref) => {
+        const { showInput, toggleShowInput, addValue, removeValue, values } = useMultipleInput(defaultValues, onAddValue)
         const inputRef = useRef<HTMLInputElement>()
         const [parent] = useAutoAnimate()
-
-        useEffect(() => {
-            onAddValue?.(values)
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [values])
 
         const handleOnClickToFocusInput = () => {
             inputRef.current?.focus()
@@ -67,9 +64,9 @@ export const MultipleInput = forwardRef<HTMLDivElement, MultipleInputProps>(
                     clsx(
                         'cursor-text overflow-x-clip [align-content:flex-start] items-center gap-1 flex flex-wrap w-full min-h-[37.6px] border [transition-duration:0.2s] relative py-1 outline-none  hover:drop-shadow-sm bg-bg-primary hover:bg-bg-tertiary/15 focus-within:bg-bg-tertiary/15 p-2 rounded-md border-border-primary/40 hover:border-border-primary focus-within:border-border-primary',
                         values.length > 0 ? 'px-1' : 'px-0',
-                        className,
                         rounded === 'md' && 'rounded-md',
-                        rounded === 'lg' && 'rounded-lg'
+                        rounded === 'lg' && 'rounded-lg',
+                        className
                     )
                 }
                 {...props}
@@ -79,11 +76,20 @@ export const MultipleInput = forwardRef<HTMLDivElement, MultipleInputProps>(
                         values.map((value) => (
                             <div
                                 key={value}
-                                className='inline-flex items-center gap-2 text-xs p-1 bg-neutral-800 h-6 rounded-md select-none cursor-pointer border border-neutral-700 border-opacity-30'
+                                className={
+                                    clsx(
+                                        'inline-flex items-center gap-2 text-xs p-1 bg-neutral-800 h-6 rounded-md select-none cursor-pointer border border-neutral-700 border-opacity-30',
+                                        itemSelectedClassName
+                                    )
+                                }
                                 onClick={handleOnClickToRemoveEntry(value)}
                             >
-                                {value}
-                                <Cross2Icon />
+                                <span
+                                    className='line-clamp-1'
+                                >
+                                    {value}
+                                </span>
+                                <Cross2Icon className='flex-shrink-0' />
                             </div>
                         )
                         )
@@ -99,7 +105,7 @@ export const MultipleInput = forwardRef<HTMLDivElement, MultipleInputProps>(
                 >
                     <input
                         ref={inputRef as LegacyRef<HTMLInputElement>}
-                        placeholder={values.length > 0 ? '' : inputPlaceholder}
+                        placeholder={inputPlaceholder}
                         className={
                             clsx(
                                 'border-none max-w-44 outline-none bg-transparent text-sm p-1',

@@ -40,7 +40,6 @@ export const createUserFeaturedArtList = async (art: ArtEntity) => {
 
     try {
         const response = await axios.post<FeaturedArt>(featuredArtPath, { artIdToAdd: art.id })
-        console.log(response.data)
     } catch (error: any) {
         console.log({ aa: error.response.data })
     }
