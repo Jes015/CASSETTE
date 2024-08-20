@@ -1,4 +1,5 @@
 import { UUID } from 'crypto'
+import { z } from 'zod'
 
 export interface SignInUserSession {
     user: User
@@ -8,12 +9,17 @@ export interface SignInUserSession {
 export interface User {
   id: UUID;
   username: string;
+  avatar: string;
+  socials: string[];
   email: string;
+  description: string;
   status: UserStatusType;
   emailVerified: boolean;
   systemRoles: UserSystemRolesType;
-  roles: UserRolesArrayType;
+  roles: string[];
 }
+
+export type UserPartial = Partial<User>
 
 export type UserArray = User[];
 
@@ -60,3 +66,12 @@ export const userStatus = {
 } as const
 
 export type UserStatusType = (typeof userStatus)[keyof typeof userStatus]
+
+export const userValidationSchemaValues = {
+    email: z.string().max(50).email().refine((value) => value.endsWith('gmail.com'), { message: 'Just gmail.com directions are allowed'}),
+    username: z.string().min(4).max(40).regex(/^[a-zA-Z0-9_-]+$/, { message: 'The username should not contain symbols or operators.' }),
+    description: z.string().min(4).max(400).optional(),
+    password: z.string().min(4).max(40).regex(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'The password must have a Uppercase, lowercase letter and a number' }),
+    roles: z.array(z.string()).refine(value => value.every(val => Object.values(userRoles).includes(val as UserRolesType)), { message: 'Valid values: ' + Object.values(userRoles).join(', ')}).optional(),
+    socials: z.string().url().array().max(3).optional()
+} as const

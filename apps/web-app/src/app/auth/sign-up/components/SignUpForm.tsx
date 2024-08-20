@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/Input/Input"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { TextField } from "@/components/ui/TextField/TextField"
 import { useRouting } from "@/hooks/useRouting"
-import { UserRolesType, userRoles } from "@/models/logic/user.model"
+import { userValidationSchemaValues } from "@/models/logic/user.model"
 import { frontRoutes } from "@/models/routing/routes.model"
 import { BaseComponentType } from "@/models/ui/component.model"
 import { globalLoaderService } from "@/services/client/CustomEvents/global-loader.client-service-custom-events"
@@ -17,10 +17,10 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 const signUpSchema = z.object({
-    email: z.string().max(50).email().refine((value) => value.endsWith('gmail.com'), { message: 'Just gmail.com directions are allowed'}),
-    username: z.string().min(4).max(40).regex(/^[a-zA-Z0-9_-]+$/, { message: 'The username should not contain symbols or operators.' }),
-    password: z.string().min(4).max(40).regex(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'The password must have a Uppercase, lowercase letter and a number' }),
-    roles: z.string().transform(value => value.split(',')).transform(value => value.map(value2 => value2[0].toLocaleUpperCase() + value2.slice(1))).refine(value => value.every(val => Object.values(userRoles).includes(val as UserRolesType)), { message: 'Valid values: ' + Object.values(userRoles).join(', ')})
+    email: userValidationSchemaValues.email,
+    username: userValidationSchemaValues.username,
+    password: userValidationSchemaValues.password,
+    roles: userValidationSchemaValues.roles
 })
 
 export type SignUpSchema = z.infer<typeof signUpSchema>

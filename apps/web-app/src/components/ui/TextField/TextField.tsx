@@ -1,5 +1,6 @@
 import { BaseComponentProps } from "@/models/ui/component.model"
 import clsx from "clsx"
+import { TextFieldError } from "./components/TextFieldError"
 import { TextFieldLabel } from "./components/TextFieldLabel"
 
 interface TextFieldProps extends BaseComponentProps {
@@ -23,3 +24,4 @@ export const TextField = ({ as, className, ...props }: TextFieldProps) => {
 }
 
 TextField.Label = TextFieldLabel
+TextField.Error = TextFieldError

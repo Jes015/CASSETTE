@@ -13,6 +13,7 @@ export const Text: FC<TextProps> = ({ as, className, ...props }) => {
             className={
                 clsx(
                     as === 'quaternary' && 'text-zinc-500 hover:underline text-[0.62rem] leading-3 font-medium',
+                    as === 'tertiary' && 'text-zinc-500 hover:underline text-sm font-medium',
                     className
                 )
             }

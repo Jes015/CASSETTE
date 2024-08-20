@@ -8,7 +8,7 @@ import { checkSession } from "@/services/server/auth.service"
 import { getUserData } from "@/services/server/user.service"
 import { Metadata, ResolvingMetadata } from "next"
 import { ActivitySection } from "./components/ActivitySection"
-import { ArtistInfoSection } from "./components/ArtistInfoSection"
+import { ArtistInfoSection } from "./components/ArtistInfoSection/ArtistInfoSection"
 import { FeaturedArtSection } from "./components/FeaturedArtSection/FeaturedArtSection"
 
 export const revalidate = 0
@@ -32,7 +32,7 @@ const ArtistPage: PageType = async ({ params }) => {
     const session = await auth()
     const isProfileOwner = session?.user.user.username === artistUsernameParam
 
-    const userData: User | null = isProfileOwner ? session?.user?.user : (await getUserData(artistUsernameParam))
+    const userData: User | null = await getUserData(artistUsernameParam)
 
     if (userData == null) {
         return 'User not found'
@@ -52,7 +52,7 @@ const ArtistPage: PageType = async ({ params }) => {
                 <div
                     className="flex flex-col flex-grow justify-start gap-2 overflow-hidden"
                 >
-                    <ArtistInfoSection user={userData} {...{ isProfileOwner }} />
+                    <ArtistInfoSection defaultUserData={userData} {...{ isProfileOwner }} />
                     {
                         (isProfileOwner || (!isProfileOwner && featuredArts.length > 0)) && (
                             <FeaturedArtSection userId={userData.id} featuredArtList={featuredArts} userArts={userArts} {...{ isProfileOwner }} />

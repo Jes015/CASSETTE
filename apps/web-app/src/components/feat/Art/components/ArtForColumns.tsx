@@ -6,7 +6,7 @@ import { frontRoutes } from "@/models/routing/routes.model"
 import { BaseComponentProps } from "@/models/ui/component.model"
 import clsx from "clsx"
 import { FC } from "react"
-import { PlaySongButton } from "../../PlaySongButton/PlaySongButton"
+import { RoundedPlaySongButton } from "../../RoundedPlaySongButton/RoundedPlaySongButton"
 import { SongActions } from "../../SongActions/SongActions"
 
 interface ArtForColumns extends BaseComponentProps {
@@ -31,7 +31,13 @@ export const ArtForColumns: FC<ArtForColumns> = ({ className, data, isProfileOwn
             }
             {...props}
         >
-            <PlaySongButton />
+            <RoundedPlaySongButton
+                imageProps={{
+                    src: data?.imageLink ?? '/tainy.webp',
+                    alt: 'cover of art ' + data?.title
+                }}
+                size="small"
+            />
             <div className="flex flex-col justify-center gap-2 flex-grow">
                 <div className="flex flex-col gap-[0.01rem] items-start">
                     <div className="flex gap-[0.1rem] items-center">

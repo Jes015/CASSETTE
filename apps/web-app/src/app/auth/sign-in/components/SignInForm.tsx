@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button/Button"
 import { Input } from "@/components/ui/Input/Input"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
 import { TextField } from "@/components/ui/TextField/TextField"
+import { userValidationSchemaValues } from "@/models/logic/user.model"
 import { frontRoutes } from "@/models/routing/routes.model"
 import { BaseComponentType } from "@/models/ui/component.model"
 import { globalLoaderService } from "@/services/client/CustomEvents/global-loader.client-service-custom-events"
@@ -15,8 +16,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 const signInSchema = z.object({
-    email: z.string().max(50).email().refine((value) => value.endsWith('gmail.com'), { message: 'Just gmail.com directions are allowed' }),
-    password: z.string().min(4).max(40).regex(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'The password must have a Uppercase, lowercase letter and a number' }),
+    email: userValidationSchemaValues.email,
+    password: userValidationSchemaValues.password,
 })
 
 export type SignInSchema = z.infer<typeof signInSchema>

@@ -16,6 +16,10 @@ const getBackUrl = (route: string) => {
 
 export const backRoutes = {
     static: {
+        user: {
+            name: 'user',
+            path: getBackUrl('user')
+        },
         auth: {
             name: 'auth',
             subRoutes: {

@@ -1,11 +1,10 @@
 'use client'
-import { BaseComponentProps } from '@/models/ui/component.model'
 import { globalLoaderService } from '@/services/client/CustomEvents/global-loader.client-service-custom-events'
 import clsx from 'clsx'
 import DefaultLink, { type LinkProps } from 'next/link'
 import { forwardRef } from 'react'
 
-interface Props extends Omit<BaseComponentProps, 'onClick' | 'onMouseEnter' | 'onTouchStart'>, LinkProps {
+interface Props extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,LinkProps {
   variant?: 'link' | 'none' | 'button'
 }
 

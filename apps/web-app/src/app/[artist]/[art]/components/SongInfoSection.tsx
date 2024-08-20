@@ -1,5 +1,5 @@
 'use client'
-import { PlaySongButton } from "@/components/feat/PlaySongButton/PlaySongButton"
+import { RoundedPlaySongButton } from "@/components/feat/RoundedPlaySongButton/RoundedPlaySongButton"
 import { SongActions } from "@/components/feat/SongActions/SongActions"
 import { Badge } from "@/components/ui/Badge"
 import { Paragraph } from "@/components/ui/Paragraph/Paragraph"
@@ -33,7 +33,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
             >
                 <div className="inline-flex flex-grow items-start">
                     <div>
-                        <PlaySongButton className="flex-shrink-0" size="big" />
+                        <RoundedPlaySongButton imageProps={{}} className="flex-shrink-0" size="big" />
                     </div>
                     <div
                         className="flex flex-grow flex-col gap-1"
@@ -70,6 +70,7 @@ export const SongInfoSection: PartialSectionType = ({ className, ...props }) => 
                                 </Paragraph>
                             </div>
                             <SongActions
+                                isProfileOwner
                                 size="big"
                             />
                         </div>
